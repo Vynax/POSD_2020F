@@ -1,13 +1,15 @@
 
-#include<gtest/gtest.h>
+#include <gtest/gtest.h>
 #include "ut_rectangle.h"
+#include "ut_ellipse.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 //#include "ut_triangle.h"
 
-int main(int argc, char ** argv){
+int main(int argc, char **argv)
+{
     testing::InitGoogleTest(&argc, argv);
     string s = "123";
     s = s + "hello";
@@ -16,6 +18,6 @@ int main(int argc, char ** argv){
     return RUN_ALL_TESTS();
 }
 
-TEST(Shapes, First){
+/*TEST(Shapes, First){
     ASSERT_TRUE(true);//之後改成true就會全綠
-}
+}*/
