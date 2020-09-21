@@ -38,7 +38,7 @@ std::string DTS(double x, int y)
     ss.str(""); //clear
     //oss.precision(y);
     ss << fixed << setprecision(y) << x;
-    ss >> x;
+    //ss >> x;
     //printf(x);
     return ss.str();
 }

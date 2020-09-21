@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include "ut_rectangle.h"
 #include "ut_ellipse.h"
+#include "ut_triangle.h"
 #include <string>
 #include <iostream>
 

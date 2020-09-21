@@ -19,13 +19,15 @@ public:
     double getX()
     {
         // return x;
-        return RTD(_x, 3);
+        //return RTD(_x, 3);
+        return _x;
     }
 
     double getY()
     {
         // return y;
-        return RTD(_y, 3);
+        //return RTD(_y, 3);
+        return _y;
     }
 };
 
