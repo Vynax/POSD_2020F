@@ -9,7 +9,8 @@ public:
     {
         // If the rectangle can't be successfully created,
         // handle the exception by throwing string "This is not a rectangle!"
-
+        if (length <= 0 || width <= 0)
+            throw string("This is not a rectangle!");
         _length = length;
         _width = width;
     }
@@ -26,7 +27,7 @@ public:
         return RTD((_length + _width) * 2, 3);
     }
 
-    std::string info() const
+    string info() const
     {
         // return the info of the Rectangle.
         // ex. Rectangle (3.712, 4.000)
