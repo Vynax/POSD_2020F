@@ -30,7 +30,7 @@ public:
     {
         // return the perimeter of the Ellipse.
         // L=2πb+4(a-b)
-        return RTD(2 * M_PI * _semiMinorAxes + 4 * (_semiMajorAxes - _semiMinorAxes), 3);
+        return 2 * M_PI * _semiMinorAxes + 4 * (_semiMajorAxes - _semiMinorAxes);
     }
 
     string info() const

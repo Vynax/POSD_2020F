@@ -24,7 +24,8 @@ TEST(Shapes, AreaEllipse)
 TEST(Shapes, PerimeterEllipse)
 {
     Ellipse ellipse(50.1234, 4);
-    ASSERT_EQ(209.626, ellipse.perimeter());
+    //ASSERT_EQ(209.626, ellipse.perimeter());
+    ASSERT_NEAR(209.626, ellipse.perimeter(), 0.001);
 }
 
 TEST(Shapes, InfoEllipse)
