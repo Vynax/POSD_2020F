@@ -4,7 +4,7 @@ TEST(Shapes, ExceptionEllipse)
 {
     try
     {
-        Ellipse(0, 1); //==> the argument should > 0 or the rectangle can't be build.
+        Ellipse(0, 1); //==> the argument should > 0 or the Ellipse can't be build.
         FAIL();
     }
     catch (std::string e)
