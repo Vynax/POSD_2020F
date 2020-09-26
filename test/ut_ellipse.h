@@ -1,6 +1,6 @@
 #include "../src/ellipse.h"
 
-TEST(Shapes, ExceptionEllipse)
+TEST(Shapesjjjjj, ExceptionEllipse)
 {
     try
     {
@@ -9,28 +9,29 @@ TEST(Shapes, ExceptionEllipse)
     }
     catch (std::string e)
     {
-        ASSERT_EQ("This is not a ellipse!", e);
+        EXPECT_EQ("This is not an ellipse!", e);
     }
 
-    ASSERT_NO_THROW(Ellipse(1, 1));
+    EXPECT_NO_THROW(Ellipse(1, 1));
 }
 
 TEST(Shapes, AreaEllipse)
 {
-    Ellipse ellipse(3.712, 4);
-    ASSERT_EQ(46.646, ellipse.area());
+    Ellipse ellipse(4, 3.712);
+    EXPECT_EQ(46.646, ellipse.area());
 }
 
 TEST(Shapes, PerimeterEllipse)
 {
     Ellipse ellipse(50.1234, 4);
     //ASSERT_EQ(209.626, ellipse.perimeter());
-    ASSERT_NEAR(209.626, ellipse.perimeter(), 0.001);
+    //cout << "hi" << endl;
+    EXPECT_NEAR(209.626, ellipse.perimeter(), 0.001);
 }
 
 TEST(Shapes, InfoEllipse)
 {
-    Ellipse ellipse(3.712, 4);
+    Ellipse ellipse(4, 3.712);
 
-    ASSERT_EQ("Ellipse (3.712, 4.000)", ellipse.info());
+    EXPECT_EQ("Ellipse (4.000, 3.712)", ellipse.info());
 }

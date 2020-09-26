@@ -1,7 +1,6 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
-#include "tritest.h"
 #include "shape.h"
 #include "two_dimensional_coordinate.h"
 #include <math.h>
@@ -11,7 +10,7 @@ class Triangle : public Shape
 {
 private:
     vector<TwoDimensionalCoordinate *> _vectors;
-    Tritest *tritest;
+    //Tritest *tritest;
     double length[3];
     int size;
 

@@ -17,13 +17,13 @@ TEST(Shapes, ExceptionTriangle)
     }
     catch (std::string e)
     {
-        ASSERT_EQ("This is not a triangle!", e);
+        EXPECT_EQ("This is not a triangle!", e);
     }
     triangleVector.clear();
     triangleVector.push_back(new TwoDimensionalCoordinate(0, 0));
     triangleVector.push_back(new TwoDimensionalCoordinate(3, 0));
     triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
-    ASSERT_NO_THROW(triangleVector);
+    EXPECT_NO_THROW(triangleVector);
     triangleVector.clear();
 }
 
@@ -34,7 +34,7 @@ TEST(Shapes, AreaTriangle)
     triangleVector.push_back(new TwoDimensionalCoordinate(4, 0));
     triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
     Triangle triangle(triangleVector);
-    ASSERT_NEAR(8.0, triangle.area(), 0.001);
+    EXPECT_NEAR(8.0, triangle.area(), 0.001);
 }
 
 TEST(Shapes, PerimeterTriangle)
@@ -44,7 +44,7 @@ TEST(Shapes, PerimeterTriangle)
     triangleVector.push_back(new TwoDimensionalCoordinate(4, 0));
     triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
     Triangle triangle(triangleVector);
-    ASSERT_NEAR(13.656, triangle.perimeter(), 0.001);
+    EXPECT_NEAR(13.656, triangle.perimeter(), 0.001);
     //ASSERT_EQ(13.6569, triangle.perimeter());
 }
 
@@ -55,5 +55,5 @@ TEST(Shapes, InfoTriangle)
     triangleVector.push_back(new TwoDimensionalCoordinate(3, 0));
     triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
     Triangle triangle(triangleVector);
-    ASSERT_EQ("Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", triangle.info());
+    EXPECT_EQ("Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", triangle.info());
 }

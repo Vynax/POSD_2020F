@@ -1,3 +1,6 @@
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
 #include "shape.h"
 
 using namespace std;
@@ -41,3 +44,5 @@ private:
     //data members
     double _length, _width;
 };
+
+#endif

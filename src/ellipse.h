@@ -1,3 +1,6 @@
+#ifndef ELLIPSE_H
+#define ELLIPSE_H
+
 #include "shape.h"
 #include <math.h>
 
@@ -13,9 +16,10 @@ public:
     Ellipse(double semiMajorAxes, double semiMinorAxes)
     {
         // If the ellipse can't be successfully created,
-        // handle the exception by throwing string "This is not a ellipse!"
-        if (semiMajorAxes <= 0 || semiMinorAxes <= 0)
-            throw std::string("This is not a ellipse!");
+        // handle the exception by throwing string "This is not an ellipse!"
+        //如果橢圓的長半徑小於短半徑，或是兩者其一為零，回傳錯誤資訊
+        if (semiMajorAxes <= 0 || semiMinorAxes <= 0 || semiMajorAxes < semiMinorAxes)
+            throw std::string("This is not an ellipse!");
         _semiMajorAxes = semiMajorAxes;
         _semiMinorAxes = semiMinorAxes;
     }
@@ -40,3 +44,5 @@ public:
         return "Ellipse (" + DTS(_semiMajorAxes, 3) + ", " + DTS(_semiMinorAxes, 3) + ")";
     }
 };
+
+#endif

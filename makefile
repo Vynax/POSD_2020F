@@ -1,9 +1,12 @@
 .PHONY: dirs clean
 
-all: dirs ut_main
+SRC = src/rectangle.h src/ellipse.h src/triangle.h src/two_dimensional_coordinate.h src/sort.h
+TEST = test/ut_rectangle.h test/ut_ellipse.h test/ut_triangle.h test/ut_sort.h
 
-ut_main: test/ut_main.cpp test/ut_rectangle.h test/ut_ellipse.h src/rectangle.h src/ellipse.h src/tritest.h src/triangle.h src/two_dimensional_coordinate.h
-	g++ -std=c++11 -Wfatal-errors test/ut_main.cpp -o bin/ut_main -lgtest -lpthread
+all: dirs ut_main $(TEST) $(SRC)
+
+ut_main: test/ut_main.cpp
+	g++ -std=c++11 test/ut_main.cpp -o bin/ut_main -lgtest -lpthread
 
 dirs:
 	mkdir -p bin
