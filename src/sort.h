@@ -1,6 +1,6 @@
 bool areaAscendingCompare(Shape *a, Shape *b)
 {
-    return true;
+    return a->area() < b->area();
 };
 
 bool areaDescendingCompare(Shape *a, Shape *b)

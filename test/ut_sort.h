@@ -44,10 +44,10 @@ TEST_F(ShapeSort, DecendingByArea)
 {
     std::array<Shape *, 3> shapes = {t345, r34, r22};
     printf("hefioah;fhe\n");
-    quickSort(shapes.begin(), shapes.end(), AscendingCompare("area"));
-    //EXPECT_EQ(11, shapes[0]->area());
-    //EXPECT_EQ(5, shapes[1]->area());
-    //EXPECT_EQ(3, shapes[2]->area());
+    quickSort(shapes.begin(), shapes.end(), areaAscendingCompare);
+    EXPECT_EQ(11, shapes[0]->area());
+    EXPECT_EQ(5, shapes[1]->area());
+    EXPECT_EQ(3, shapes[2]->area());
 }
 
 //quickSort(shapes.begin(), shapes.end(), AscendingCompare("area"));
