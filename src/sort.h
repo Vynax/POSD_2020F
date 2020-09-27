@@ -55,17 +55,17 @@ public:
 
 //RAIterator = RandomAccessIterator
 template <class RAIterator, class Compare123>
-void quickSort(RAIterator *first, RAIterator *last, Compare123 comp)
+void quickSort(RAIterator first, RAIterator last, Compare123 comp)
 {
-    RAIterator q;
+    RAIterator *q;
     if (first < last)
     {
         //printf("%d\n", first);
-        q = partition123(*first, *last, comp);
+        **q = partition123(*first, *last, comp);
         printf("hi4\n");
-        quickSort(first, q - 1, comp);
+        quickSort(first, *q - 1, comp);
         printf("hi5\n");
-        quickSort(q, last, comp);
+        quickSort(*q, last, comp);
         printf("hi6\n");
     }
     //RAIterator i,j;
@@ -82,10 +82,10 @@ RAIterator partition123(RAIterator first, RAIterator last, Compare123 comp)
     for (j = first; j < last; j++)
     {
         printf("hi1\n");
-        if (comp(*j, *pivot))
+        if (comp(j, pivot))
         {
             printf("hi2\n");
-            std::swap(*j, *pivot);
+            std::swap(j, pivot);
             printf("hi3\n");
             i++;
         }
