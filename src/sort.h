@@ -1,21 +1,22 @@
 bool areaAscendingCompare(Shape *a, Shape *b)
 {
-    return a->area() < b->area();
+    return (a->area() < b->area());
 };
 
 bool areaDescendingCompare(Shape *a, Shape *b)
 {
-    return true;
+    return a->area() > b->area();
+    ;
 };
 
 bool perimeterAscendingCompare(Shape *a, Shape *b)
 {
-    return true;
+    return a->perimeter() < b->perimeter();
 };
 
 bool perimeterDescendingCompare(Shape *a, Shape *b)
 {
-    return true;
+    return a->perimeter() > b->perimeter();
 };
 
 class AscendingCompare
@@ -51,21 +52,34 @@ private:
 
 public:
     DescendingCompare(std::string feature) : _feature(feature) {}
+    bool operator()(Shape *lo, Shape *hi)
+    {
+        if (_feature == "area")
+        {
+            return lo->area() > hi->area();
+        }
+
+        else if (_feature == "perimeter")
+        {
+            return lo->perimeter() > hi->perimeter();
+        }
+        return 0;
+    }
 };
 
 //RAIterator = RandomAccessIterator
 template <class RAIterator, class Compare123>
 void quickSort(RAIterator first, RAIterator last, Compare123 comp)
 {
-    RAIterator *q;
+
     if (first < last)
     {
         //printf("%d\n", first);
-        **q = partition123(*first, *last, comp);
+        auto q = partition123(first, last, comp);
         printf("hi4\n");
-        quickSort(first, *q - 1, comp);
+        quickSort(first, q, comp);
         printf("hi5\n");
-        quickSort(*q, last, comp);
+        quickSort(q + 1, last, comp);
         printf("hi6\n");
     }
     //RAIterator i,j;
@@ -76,20 +90,21 @@ template <class RAIterator, class Compare123>
 RAIterator partition123(RAIterator first, RAIterator last, Compare123 comp)
 {
     // 請參考 https://en.wikipedia.org/wiki/Quicksort
-    RAIterator pivot = last;
-    RAIterator j;
-    RAIterator i = first;
-    for (j = first; j < last; j++)
+    auto pivot = last - 1;
+    //RAIterator j;
+    auto i = first;
+    for (auto j = first; j < pivot; j++)
     {
         printf("hi1\n");
-        if (comp(j, pivot))
+        if (comp(*j, *pivot))
         {
             printf("hi2\n");
-            std::swap(j, pivot);
+            std::swap(*j, *i);
             printf("hi3\n");
             i++;
         }
     }
+    std::swap(*i, *pivot);
     return i;
 }
 
