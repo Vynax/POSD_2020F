@@ -107,7 +107,6 @@ RAIterator partition123(RAIterator first, RAIterator last, Compare123 comp)
 template <class RAIterator, class Compare123>
 RAIterator Random_partition(RAIterator first, RAIterator last, Compare123 comp)
 {
-    std::srand(std::time(0)); // use current time as seed for random generator
     int random_variable = std::rand();
     int dist = std::distance(first, last); //取得需比較之數量
     int i = random_variable % dist;

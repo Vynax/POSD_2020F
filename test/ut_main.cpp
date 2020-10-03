@@ -10,8 +10,9 @@
 using namespace std;
 //#include "ut_triangle.h"
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
+    std::srand(std::time(0)); // use current time(?) as seed for random generator
     testing::InitGoogleTest(&argc, argv);
     string s = "123";
     s = s + "hello";
