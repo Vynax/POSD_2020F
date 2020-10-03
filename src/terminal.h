@@ -8,7 +8,7 @@ public:
         std::string shapep("(Rectangle|Ellipse|Triangle)"); //shape pattern
         std::string spacep(" ");                            // space pattern
         std::string lparenthesis("\(");
-        std::string decimal_point("[0-9]+(.[0-9]*)?");
+        std::string decimal_point("[0-9]+(.[0-9]*)?"); //((Rectangle|Ellipse|Triangle) \( *[0-9]+(.[0-9]*)?, *[0-9]+(.[0-9]*)?\))|(Triangle) \(\[-?[0-9]+(.[0-9]*)? *, *-?[0-9]+(.[0-9]*)?
         std::string str;
         std::regex pattern;
 
