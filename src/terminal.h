@@ -9,7 +9,7 @@ public:
         std::string space_plus(" +");                      // space pattern
         std::string space(" ");
         std::string lparenthesis("\(");
-        std::string decimalN("-?[0-9]+(.[0-9]*)?"); //((Rectangle|Ellipse|Triangle) \( *[0-9]+(.[0-9]*)?, *[0-9]+(.[0-9]*)?\))|(Triangle) \(\[-?[0-9]+(.[0-9]*)? *, *-?[0-9]+(.[0-9]*)?
+        std::string decimalN("-?[0-9]+(.[0-9]*)?"); //((Rectangle|Ellipse) \( *-?[0-9]+(.[0-9]+)? *, *-?[0-9]+(.[0-9]+)? *\)) |(Triangle( *\(( *\[ *-?[0-9]+(.[0-9]+)? *, *-?[0-9]+(.[0-9]+)? *\] *,){2}( *\[ *-?[0-9]+(.[0-9]+)? *, *-?[0-9]+(.[0-9]+)? *\] *) *\)) )(area|perimeter) (inc|dec)
         std::string str;
         std::regex pattern;
 
