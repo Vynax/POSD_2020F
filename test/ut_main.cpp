@@ -4,6 +4,7 @@
 #include "ut_ellipse.h"
 #include "ut_triangle.h"
 #include "ut_sort.h"
+#include "ut_terminal.h"
 #include <string>
 #include <iostream>
 

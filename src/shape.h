@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 class Shape
@@ -27,6 +28,7 @@ double RTD(double x, int y)
     return atof(xtostr);*/
     stringstream ss;
     ss.str(""); //clear
+    ss.clear();
     ss << fixed << setprecision(y) << x;
     ss >> x;
     return x;

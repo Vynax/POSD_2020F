@@ -1,3 +1,6 @@
+#ifndef SORT_H
+#define SORT_H
+#include "shape.h"
 bool areaAscendingCompare(Shape *a, Shape *b)
 {
     return (a->area() < b->area());
@@ -110,7 +113,9 @@ RAIterator Random_partition(RAIterator first, RAIterator last, Compare123 comp)
     int random_variable = std::rand();
     int dist = std::distance(first, last); //取得需比較之數量
     int i = random_variable % dist;
-    printf("%d %d %d\n", random_variable, dist, i);
+    //printf("%d %d %d\n", random_variable, dist, i);
     std::swap(*(last - 1), *(first + i));
     return partition123(first, last, comp);
 }
+
+#endif
