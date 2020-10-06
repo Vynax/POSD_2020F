@@ -126,7 +126,7 @@ public:
             }
             catch (string e)
             {
-                cout << e << endl;
+                throw string("invalid input");
             }
         }
     }

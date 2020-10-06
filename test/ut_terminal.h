@@ -6,8 +6,15 @@
 
 TEST(Terminal, test)
 {
-    Terminal t123("Rectangle (3.7, 4.2) Ellipse (3, 4) Triangle ([0,-3], [-3,0], [0,-4]) area inc");
-    t123.showResult();
+    try
+    {
+        Terminal t123("Rectangle (3.7, 4.2) Ellipse (3, 4) Triangle ([0,-3], [-3,0], [0,-4]) area inc");
+        t123.showResult();
+    }
+    catch (std::string e)
+    {
+        ASSERT_EQ("invalid input", e);
+    }
 }
 
 TEST(Terminal, ignore)
