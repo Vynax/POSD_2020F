@@ -46,7 +46,7 @@ public:
         //str1 = _match[0];
         int i = 0;
         int final_amount = 0;
-
+        // .* [area|perimeter] [inc|dec]
         //int shape_amount = 0;
         int count[3] = {0}; // 0是形狀數量，1是是否有area or perimeter，2是是否有升冪或降冪
         while (regex_search(stri, _match, pattern))
@@ -96,23 +96,36 @@ public:
         pattern.assign(num);
         for (int i = 0, final_amount = 0; i < count[0]; i++)
         {
-            try
+            found = vec.at(i).find("Rectangle");
+            str = vec.at(i);
+            if (found != std::string::npos)
             {
-                found = vec.at(i).find("Rectangle");
-                str = vec.at(i);
-                if (found != std::string::npos)
+                try
                 {
-
                     getNum(str, _match, pattern);
                     //s = new Rectangle(value[0], value[1]);
                     shapes.push_back(new Rectangle(value[0], value[1]));
                 }
-                else if (vec.at(i).find("Ellipse") != std::string::npos)
+                catch (std::string e)
+                {
+                    continue;
+                }
+            }
+            else if (vec.at(i).find("Ellipse") != std::string::npos)
+            {
+                try
                 {
                     getNum(str, _match, pattern);
                     shapes.push_back(new Ellipse(value[0], value[1]));
                 }
-                else if (vec.at(i).find("Triangle") != std::string::npos)
+                catch (std::string e)
+                {
+                    continue;
+                }
+            }
+            else if (vec.at(i).find("Triangle") != std::string::npos)
+            {
+                try
                 {
                     getNum(str, _match, pattern);
                     triangleVector.push_back(new TwoDimensionalCoordinate(value[0], value[1]));
@@ -121,16 +134,22 @@ public:
                     //s = new Triangle(triangleVector);
                     shapes.push_back(new Triangle(triangleVector));
                 }
-                cout << shapes[final_amount]->area() << endl;
-                final_amount++;
+                catch (std::string e)
+                {
+                    continue;
+                }
             }
-            catch (string e)
-            {
-                throw string("invalid input");
-            }
+            cout << shapes[final_amount]->area() << endl;
+            final_amount++;
+        }
+        if (shapes.size() <= 0)
+        {
+            throw string("invalid input");
         }
     }
-    std::string showResult()
+
+    std::string
+    showResult()
     {
         string outcome = "";
         if (type[1] == "inc")
