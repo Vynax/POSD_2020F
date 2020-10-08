@@ -6,9 +6,9 @@
 using namespace std;
 int main(int argc, char *argv[])
 {
-    // stringstream ss;
-    // ss.str("");
-    // ss.clear();
+    stringstream ss;
+    ss.str("");
+    ss.clear();
     string str = "";
     string str_sum = "";
     vector<string> vec;
@@ -18,7 +18,20 @@ int main(int argc, char *argv[])
     {
         std::cout << "[" << i << "] " << argv[i] << std::endl;
     }
+    switch (argc)
+    {
+    case 0:
+    case 1:
+        cout << "Missing Arguments" << endl;
+        return 0;
+        break;
+    case 5:
+        break;
+    default:
+        break;
+    }
     ifstream ifile(argv[1]);
+    ofstream ofile(argv[2]);
     if (ifile.is_open())
     {
         while (getline(ifile, str))
@@ -43,9 +56,25 @@ int main(int argc, char *argv[])
         // }
         ifile.close();
     }
+
+    ss << argv[3] << " " << argv[4];
+    cout << ss.str() << endl;
+    str_sum += (" " + ss.str());
     cout << std::flush;
-    //str_sum = regex_replace(str_sum, e, "");
     cout << "sum2" << str_sum << endl;
+
+    cout << str_sum << endl;
+    try
+    {
+        Terminal t(str_sum);
+        ofile << t.showResult();
+        ofile.close();
+    }
+    catch (string e)
+    {
+        cout << e << endl;
+        ofile.close();
+    }
 
     cout << std::flush;
     //Terminal t(str_sum);
