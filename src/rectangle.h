@@ -7,8 +7,17 @@ using namespace std;
 
 class Rectangle : public Shape
 {
+private:
+    //data members
+    double _length, _width;
+
 public:
-    Rectangle(double length, double width)
+    Rectangle(string id, double length, double width) : Shape(id), _length(length), _width(width)
+    {
+        _id = id;
+        _color = "white";
+    }
+    Rectangle(string id, double length, double width, string color) : Shape(id, color)
     {
         // If the rectangle can't be successfully created,
         // handle the exception by throwing string "This is not a rectangle!"
@@ -16,6 +25,8 @@ public:
             throw string("This is not a rectangle!");
         _length = length;
         _width = width;
+        _id = id;
+        _color = "white";
     }
 
     double area() const
@@ -39,10 +50,6 @@ public:
         s = s + ", " + DTS(_width, 3) + ")";*/
         return "Rectangle (" + DTS(_length, 3) + ", " + DTS(_width, 3) + ")";
     }
-
-private:
-    //data members
-    double _length, _width;
 };
 
 #endif
