@@ -104,7 +104,7 @@ public:
                 {
                     getNum(str, _match, pattern);
                     //s = new Rectangle(value[0], value[1]);
-                    shapes.push_back(new Rectangle(value[0], value[1]));
+                    shapes.push_back(new Rectangle("0", value[0], value[1]));
                 }
                 catch (std::string e)
                 {
@@ -116,7 +116,7 @@ public:
                 try
                 {
                     getNum(str, _match, pattern);
-                    shapes.push_back(new Ellipse(value[0], value[1]));
+                    shapes.push_back(new Ellipse("0", value[0], value[1]));
                 }
                 catch (std::string e)
                 {
@@ -132,7 +132,7 @@ public:
                     triangleVector.push_back(new TwoDimensionalCoordinate(value[2], value[3]));
                     triangleVector.push_back(new TwoDimensionalCoordinate(value[4], value[5]));
                     //s = new Triangle(triangleVector);
-                    shapes.push_back(new Triangle(triangleVector));
+                    shapes.push_back(new Triangle("0", triangleVector));
                 }
                 catch (std::string e)
                 {

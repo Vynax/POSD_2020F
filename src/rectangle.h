@@ -14,19 +14,21 @@ private:
 public:
     Rectangle(string id, double length, double width) : Shape(id), _length(length), _width(width)
     {
-        _id = id;
-        _color = "white";
+        if (length <= 0 || width <= 0)
+            throw string("This is not a rectangle!");
+        // _id = id;
+        // _color = "white";
     }
-    Rectangle(string id, double length, double width, string color) : Shape(id, color)
+    Rectangle(string id, double length, double width, string color) : Shape(id, color), _length(length), _width(width)
     {
         // If the rectangle can't be successfully created,
         // handle the exception by throwing string "This is not a rectangle!"
         if (length <= 0 || width <= 0)
             throw string("This is not a rectangle!");
-        _length = length;
-        _width = width;
-        _id = id;
-        _color = "white";
+        // _length = length;
+        // _width = width;
+        // _id = id;
+        // _color = color;
     }
 
     double area() const
@@ -49,6 +51,18 @@ public:
         s = "Rectangle (" + DTS(_length, 3);
         s = s + ", " + DTS(_width, 3) + ")";*/
         return "Rectangle (" + DTS(_length, 3) + ", " + DTS(_width, 3) + ")";
+    }
+    void addShape(Shape *shape)
+    {
+        throw std::string("Only compound shape can add shape!");
+    }
+    void deleteShapeById(std::string id)
+    {
+        throw std::string("Only compound shape can delete shape!");
+    }
+    Shape *getShapeById(std::string id)
+    {
+        throw std::string("Only compound shape can get shape!");
     }
 };
 

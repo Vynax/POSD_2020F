@@ -9,12 +9,12 @@ class ShapeSort : public ::testing::Test
 protected:
     void SetUp() override
     {
-        r34 = new Rectangle(3, 4);
-        r22 = new Rectangle(2, 2);
+        r34 = new Rectangle("0", 3, 4);
+        r22 = new Rectangle("0", 2, 2);
         triangleVector.push_back(new TwoDimensionalCoordinate(0, 0));
         triangleVector.push_back(new TwoDimensionalCoordinate(3, 0));
         triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
-        t345 = new Triangle(triangleVector);
+        t345 = new Triangle("0", triangleVector);
     }
 
     void TearDown() override

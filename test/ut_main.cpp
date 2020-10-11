@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include "../src/shape.h"
 #include "ut_rectangle.h"
 #include "ut_ellipse.h"
 #include "ut_triangle.h"
