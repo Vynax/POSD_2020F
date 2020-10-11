@@ -10,7 +10,7 @@
 using namespace std;
 class Shape
 {
-protected:
+private:
     string _id, _color;
 
 public:
@@ -26,36 +26,13 @@ public:
     virtual void addShape(Shape *shape);          // throw std::string "Only compound shape can add shape!"
     virtual void deleteShapeById(std::string id); // throw std::string "Only compound shape can delete shape!"
     virtual Shape *getShapeById(std::string id);  // throw std::string "Only compound shape can get shape!"
-    ~Shape(){};
+
+    // ~Shape(){};
 };
 
 //將x取到小數點後y位數，回傳double值 RTD:roundtodigit
-double RTD(double x, int y)
-{
-    /*char xtostr[80];
-    string s = "%." + to_string(y) + "f";
-    char str[s.length() + 1];
-    strcpy(str, s.c_str());
-    sprintf(xtostr, str, x);
-    //cout << str << endl;
-    return atof(xtostr);*/
-    stringstream ss;
-    ss.str(""); //clear
-    ss.clear();
-    ss << fixed << setprecision(y) << x;
-    ss >> x;
-    return x;
-}
+double RTD(double x, int y);
 //將x取到小數點後y位數，回傳string DTS:doubletostring
-std::string DTS(double x, int y)
-{
-    stringstream ss;
-    ss.str(""); //clear
-    //oss.precision(y);
-    ss << fixed << setprecision(y) << x;
-    //ss >> x;
-    //printf(x);
-    return ss.str();
-}
+std::string DTS(double x, int y);
 
 #endif

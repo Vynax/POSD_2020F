@@ -32,8 +32,6 @@ public:
         }
         if (!triangletest()) //如果triangletest失敗就回傳錯誤資訊
             throw string("This is not a triangle!");
-        _id = id;
-        _color = "white";
     }
     Triangle(std::string id, std::vector<TwoDimensionalCoordinate *> vectors, string color) : Shape(id, color), _vectors(vectors)
     {
@@ -52,8 +50,6 @@ public:
         }
         if (!triangletest()) //如果triangletest失敗就回傳錯誤資訊
             throw string("This is not a triangle!");
-        _id = id;
-        _color = color;
     }
 
     double area() const
@@ -119,18 +115,6 @@ public:
         for (ptr = _vectors.begin(); ptr < _vectors.end(); ptr++)
             delete *ptr;
     }*/
-    void addShape(Shape *shape)
-    {
-        throw std::string("Only compound shape can add shape!");
-    }
-    void deleteShapeById(std::string id)
-    {
-        throw std::string("Only compound shape can delete shape!");
-    }
-    Shape *getShapeById(std::string id)
-    {
-        throw std::string("Only compound shape can get shape!");
-    }
 };
 
 #endif

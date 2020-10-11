@@ -52,18 +52,6 @@ public:
         s = s + ", " + DTS(_width, 3) + ")";*/
         return "Rectangle (" + DTS(_length, 3) + ", " + DTS(_width, 3) + ")";
     }
-    void addShape(Shape *shape)
-    {
-        throw std::string("Only compound shape can add shape!");
-    }
-    void deleteShapeById(std::string id)
-    {
-        throw std::string("Only compound shape can delete shape!");
-    }
-    Shape *getShapeById(std::string id)
-    {
-        throw std::string("Only compound shape can get shape!");
-    }
 };
 
 #endif
