@@ -1,3 +1,5 @@
+#include "shape.h"
+
 class CompoundShape : public Shape
 {
 private:
