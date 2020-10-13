@@ -68,23 +68,24 @@ public:
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected delete shape but shape not found"
         vector<Shape *>::iterator ptr;
+        int deleteCount = 0;
         for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
         {
             if ((*ptr)->id() == id)
             {
                 _shapes->erase(ptr);
-                return;
+                deleteCount++;
+                // return;
             }
             else if ((*ptr)->color() == "transparent")
             {
-                if (deleteShapeInCompound(*ptr, id))
-                    return;
+                deleteCount += (deleteShapeInCompound(*ptr, id));
+                // if (deleteShapeInCompound(*ptr, id))
+                //     return;
             }
-            // str += (*ptr)->info();
-            // if (ptr < (_shapes->end()) - 1)
-            //     str += ", ";
         }
-        std::string("Expected delete shape but shape not found");
+        if (deleteCount == 0)
+            std::string("Expected delete shape but shape not found");
         return;
     }
 
@@ -93,26 +94,29 @@ public:
         // search and return a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected get shape but shape not found"
-        return 0;
+        return (new Rectangle("0", 3, 4));
     }
 
-    bool deleteShapeInCompound(Shape *CS, std::string id)
+    int deleteShapeInCompound(Shape *CS, std::string id)
     {
         vector<Shape *>::iterator ptr;
+        int deleteCount = 0;
         for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
         {
             if ((*ptr)->id() == id)
             {
                 _shapes->erase(ptr);
-                return true;
+                deleteCount++;
+                // return true;
             }
             else if ((*ptr)->color() == "transparent")
             {
-                if (deleteShapeInCompound(*ptr, id))
-                    return true;
+                // if (deleteShapeInCompound(*ptr, id))
+                //     return true;
+                deleteCount += (deleteShapeInCompound(*ptr, id));
             }
         }
 
-        return false;
+        return deleteCount;
     }
 };
