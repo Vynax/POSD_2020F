@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 class Shape
@@ -14,6 +15,7 @@ protected:
     string _id, _color;
 
 public:
+    //std::vector<Shape *> *_shapes;
     Shape(std::string id) : _id(id), _color("white"){};                  // interface for default color "white".
     Shape(std::string id, std::string color) : _id(id), _color(color){}; // interface for color input by user.
     std::string id() const { return _id; };                              // return id of shape.

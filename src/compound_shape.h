@@ -3,7 +3,7 @@
 
 class CompoundShape : public Shape
 {
-private:
+protected:
     std::vector<Shape *> *_shapes;
 
 public:
@@ -69,24 +69,30 @@ public:
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected delete shape but shape not found"
         vector<Shape *>::iterator ptr;
-        int deleteCount = 0;
+        //int deleteCount = 0;
         for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
         {
             if ((*ptr)->id() == id)
             {
                 _shapes->erase(ptr);
-                deleteCount++;
+                return;
                 // return;
             }
             else if ((*ptr)->color() == "transparent")
             {
-                deleteCount += (deleteShapeInCompound(*ptr, id));
+                try
+                {
+                    (*ptr)->deleteShapeById(id);
+                    return;
+                }
+                catch (std::string e)
+                {
+                }
                 // if (deleteShapeInCompound(*ptr, id))
                 //     return;
             }
         }
-        if (deleteCount == 0)
-            std::string("Expected delete shape but shape not found");
+        std::string("Expected delete shape but shape not found");
         return;
     }
 
@@ -98,26 +104,26 @@ public:
         return (Shape *)(new Rectangle("0", 3, 4));
     }
 
-    int deleteShapeInCompound(Shape *CS, std::string id)
-    {
-        vector<Shape *>::iterator ptr;
-        int deleteCount = 0;
-        for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
-        {
-            if ((*ptr)->id() == id)
-            {
-                _shapes->erase(ptr);
-                deleteCount++;
-                // return true;
-            }
-            else if ((*ptr)->color() == "transparent")
-            {
-                // if (deleteShapeInCompound(*ptr, id))
-                //     return true;
-                deleteCount += (deleteShapeInCompound(*ptr, id));
-            }
-        }
+    // int deleteShapeInCompound(Shape *CS, std::string id)
+    // {
+    //     vector<Shape *>::iterator ptr;
+    //     int deleteCount = 0;
+    //     for (ptr = CS->_shapes->begin(); ptr < CS->_shapes->end(); ptr++)
+    //     {
+    //         if ((*ptr)->id() == id)
+    //         {
+    //             CS->_shapes->erase(ptr);
+    //             deleteCount++;
+    //             // return true;
+    //         }
+    //         else if ((*ptr)->color() == "transparent")
+    //         {
+    //             // if (deleteShapeInCompound(*ptr, id))
+    //             //     return true;
+    //             deleteCount += (deleteShapeInCompound(*ptr, id));
+    //         }
+    //     }
 
-        return deleteCount;
-    }
+    //     return deleteCount;
+    // }
 };
