@@ -1,4 +1,5 @@
 #include "shape.h"
+#include "rectangle.h"
 
 class CompoundShape : public Shape
 {
