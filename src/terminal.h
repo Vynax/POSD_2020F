@@ -32,7 +32,7 @@ public:
         std::string space(" ");
         ss.str("");
         ss.clear();
-        std::cout << input << std::endl;
+        //std::cout << input << std::endl;
         rule.push_back("");
         rule.push_back("((Rectangle|Ellipse) +\\( *" + num + " *, *" + num + " *\\)) *");
         rule.push_back("|(Triangle +( *\\(( *\\[ *" + num + " *, *" + num + " *\\] *,){2}( *\\[ *" + num + " *, *" + num + " *\\] *\\))))");
@@ -91,8 +91,8 @@ public:
             //std::cout << "i";
             std::cout << _match[i] << std::endl;
         }*/
-        cout << "vecsize=" << vec.size() << endl;
-        cout << "shapecount=" << count[0] << endl;
+        // cout << "vecsize=" << vec.size() << endl;
+        // cout << "shapecount=" << count[0] << endl;
         pattern.assign(num);
         for (int i = 0, final_amount = 0; i < count[0]; i++)
         {
@@ -139,7 +139,7 @@ public:
                     continue;
                 }
             }
-            cout << shapes[final_amount]->area() << endl;
+            // cout << shapes[final_amount]->area() << endl;
             final_amount++;
         }
         if (shapes.size() <= 0)
@@ -166,7 +166,7 @@ public:
             for (int i = 0; i < shapes.size(); i++)
             {
                 outcome += DTS(shapes[i]->area(), 3);
-                cout << "shapes[" << i << "]->area=" << shapes[i]->area() << endl;
+                // cout << "shapes[" << i << "]->area=" << shapes[i]->area() << endl;
                 if (i < shapes.size() - 1)
                     outcome += "\n";
             }
@@ -176,7 +176,7 @@ public:
             for (int i = 0; i < shapes.size(); i++)
             {
                 outcome += DTS(shapes[i]->perimeter(), 3);
-                cout << "shapes[" << i << "]->perimeter=" << shapes[i]->perimeter() << endl;
+                // cout << "shapes[" << i << "]->perimeter=" << shapes[i]->perimeter() << endl;
                 if (i < shapes.size() - 1)
                     outcome += "\n";
             }
@@ -190,13 +190,13 @@ public:
         {
             ss.str("");
             ss.clear();
-            cout << "\nMatched string is " << _match.str(0) << endl
-                 << "and it is found at position "
-                 << _match.position(0) << endl;
+            // cout << "\nMatched string is " << _match.str(0) << endl
+            //      << "and it is found at position "
+            //      << _match.position(0) << endl;
             ss << _match.str(0);
             ss >> value[i];
 
-            cout << value[i] << endl;
+            //cout << value[i] << endl;
             i++;
 
             // suffix to find the rest of the string.

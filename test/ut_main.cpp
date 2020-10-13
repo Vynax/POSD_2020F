@@ -4,6 +4,7 @@
 #include "ut_triangle.h"
 #include "ut_sort.h"
 #include "ut_terminal.h"
+#include "ut_compound_shape.h"
 #include <string>
 #include <iostream>
 

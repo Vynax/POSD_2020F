@@ -19,14 +19,14 @@ TEST(Shapes, AreaRectangle)
 {
     Rectangle rectangle("0", 50.1234, 4);
     //ASSERT_TRUE(12 == rectangle.area());
-    EXPECT_EQ(200.494, rectangle.area());
+    EXPECT_NEAR(200.494, rectangle.area(), 0.001);
 }
 
 TEST(Shapes, PerimeterRectangle)
 {
     Rectangle rectangle("0", 50.1234, 4);
     //ASSERT_TRUE(12 == rectangle.area());
-    EXPECT_EQ(108.247, rectangle.perimeter());
+    EXPECT_NEAR(108.247, rectangle.perimeter(), 0.001);
 }
 
 TEST(Shapes, InfoRectangle)

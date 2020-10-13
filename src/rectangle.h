@@ -34,13 +34,13 @@ public:
     double area() const
     {
         // return the area of the Rectangle.
-        return RTD(_length * _width, 3);
+        return _length * _width;
     }
 
     double perimeter() const
     {
         // return the perimeter of the Rectangle.
-        return RTD((_length + _width) * 2, 3);
+        return (_length + _width) * 2;
     }
 
     string info() const

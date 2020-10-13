@@ -18,7 +18,7 @@ TEST(Shapesjjjjj, ExceptionEllipse)
 TEST(Shapes, AreaEllipse)
 {
     Ellipse ellipse("0", 4, 3.712);
-    EXPECT_EQ(46.646, ellipse.area());
+    EXPECT_NEAR(46.646, ellipse.area(), 0.001);
 }
 
 TEST(Shapes, PerimeterEllipse)

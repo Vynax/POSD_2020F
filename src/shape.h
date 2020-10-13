@@ -10,14 +10,14 @@
 using namespace std;
 class Shape
 {
-private:
+protected:
     string _id, _color;
 
 public:
     Shape(std::string id) : _id(id), _color("white"){};                  // interface for default color "white".
     Shape(std::string id, std::string color) : _id(id), _color(color){}; // interface for color input by user.
-    std::string id() const;                                              // return id of shape.
-    std::string color() const;                                           // return color of shape.
+    std::string id() const { return _id; };                              // return id of shape.
+    std::string color() const { return _color; };                        // return color of shape.
 
     virtual double area() const = 0;
     virtual double perimeter() const = 0;

@@ -37,7 +37,7 @@ public:
     double area() const
     {
         // return the area of the Ellipse.
-        return RTD(M_PI * _semiMajorAxes * _semiMinorAxes, 3);
+        return M_PI * _semiMajorAxes * _semiMinorAxes;
     }
 
     double perimeter() const

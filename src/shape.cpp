@@ -15,6 +15,11 @@ Shape *Shape::getShapeById(std::string id)
     throw std::string("Only compound shape can get shape!");
 }
 
+// std::string Shape::id()
+// {
+//     return _id;
+// }
+
 //將x取到小數點後y位數，回傳double值 RTD:roundtodigit
 double RTD(double x, int y)
 {
