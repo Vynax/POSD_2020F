@@ -100,7 +100,26 @@ public:
         // search and return a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected get shape but shape not found"
-        return (Shape *)(new Rectangle("0", 3, 4));
+        //return (Shape *)(new Rectangle("0", 3, 4));
+        vector<Shape *>::iterator ptr;
+        for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        {
+            if ((*ptr)->id() == id)
+            {
+                return *ptr;
+            }
+            else
+            {
+                try
+                {
+                    return (*ptr)->getShapeById(id);
+                }
+                catch (std::string e)
+                {
+                }
+            }
+        }
+        throw std::string("Expected get shape but shape not found");
     }
 
     // int deleteShapeInCompound(Shape *CS, std::string id)
