@@ -94,7 +94,7 @@ public:
         // search and return a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected get shape but shape not found"
-        return (new Rectangle("0", 3, 4));
+        return (Shape *)(new Rectangle("0", 3, 4));
     }
 
     int deleteShapeInCompound(Shape *CS, std::string id)
