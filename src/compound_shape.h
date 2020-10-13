@@ -78,7 +78,7 @@ public:
                 return;
                 // return;
             }
-            else if ((*ptr)->color() == "transparent")
+            else // if ((*ptr)->color() == "transparent")
             {
                 try
                 {
