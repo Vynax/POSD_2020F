@@ -92,8 +92,7 @@ public:
                 //     return;
             }
         }
-        std::string("Expected delete shape but shape not found");
-        return;
+        throw std::string("Expected delete shape but shape not found");
     }
 
     Shape *getShapeById(std::string id)
