@@ -71,7 +71,37 @@ TEST_F(CompoundTest, Info)
     EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
 }
 
-TEST_F(CompoundTest, Delete)
+TEST_F(CompoundTest, GetById)
+{
+    std::vector<Shape *> shapesVector;
+    shapesVector.push_back(t345);
+    shapesVector.push_back(r34);
+    shapesVector.push_back(e43);
+    CompoundShape cs("0", &shapesVector);
+    //Shape *shapes[3] = {t345, r34, e43};
+    EXPECT_EQ("Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", cs.getShapeById("2")->info());
+}
+
+TEST_F(CompoundTest, GetByIdException)
+{
+    std::vector<Shape *> shapesVector;
+    shapesVector.push_back(t345);
+    shapesVector.push_back(r34);
+    shapesVector.push_back(e43);
+    CompoundShape cs("0", &shapesVector);
+    //Shape *shapes[3] = {t345, r34, e43};
+    try
+    {
+        string s = cs.getShapeById("3")->info();
+        FAIL();
+    }
+    catch (std::string e)
+    {
+        EXPECT_EQ("Expected get shape but shape not found", e);
+    }
+}
+
+TEST_F(CompoundTest, DeleteById)
 {
     std::vector<Shape *> shapesVector;
     shapesVector.push_back(t345);
@@ -84,6 +114,28 @@ TEST_F(CompoundTest, Delete)
     EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Ellipse (4.000, 3.000)}", cs.info());
 }
 
+TEST_F(CompoundTest, DeleteByIdException)
+{
+    std::vector<Shape *> shapesVector;
+    shapesVector.push_back(t345);
+    shapesVector.push_back(r34);
+    shapesVector.push_back(e43);
+    CompoundShape cs("222", &shapesVector);
+    //Shape *shapes[3] = {t345, r34, e43};
+    EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
+    try
+    {
+        cs.deleteShapeById("55");
+        FAIL();
+    }
+    catch (std::string e)
+    {
+        EXPECT_EQ("Expected delete shape but shape not found", e);
+    }
+
+    EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
+}
+
 TEST_F(CompoundTest, DeleteInTripleLevel)
 {
     std::vector<Shape *> shapesVector = {t345, r34, e43};
@@ -93,7 +145,13 @@ TEST_F(CompoundTest, DeleteInTripleLevel)
     std::vector<Shape *> shapesV3 = {&cs1, &cs2};
     CompoundShape cs3("cs3", &shapesV3);
     EXPECT_EQ("Compound Shape {Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}, Compound Shape {Rectangle (2.000, 6.000), Rectangle (5.000, 5.000)}}", cs3.info());
-    cs3.deleteShapeById("12");
+    try
+    {
+        cs3.deleteShapeById("12");
+    }
+    catch (std::string e)
+    {
+    }
     EXPECT_EQ("Compound Shape {Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}, Compound Shape {Rectangle (5.000, 5.000)}}", cs3.info());
 }
 
