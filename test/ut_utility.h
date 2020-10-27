@@ -58,3 +58,78 @@ TEST_F(UtilityTest, GetShapeByIdException)
         //cout << e << endl;
     }
 }
+
+TEST_F(UtilityTest, AreaFilter)
+{
+    std::list<Shape *> shapes = {t345};
+    CompoundShape cs1("1", shapes);
+    std::list<Shape *> shapes1 = {&cs1, e43, r34};
+    CompoundShape cs0("0", shapes1);
+    // return shapes that area in range of 10 >= && 5 <=, but don't include compoundShape_0 itself.
+    std::deque<Shape *> dq = filterShape(&cs0, AreaFilter(10, 5));
+    std::deque<Shape *>::iterator itr = dq.begin();
+    std::string str = "";
+    while (itr != dq.end())
+    {
+        str += (*itr)->info();
+        ++itr;
+    }
+
+    EXPECT_EQ("info", str);
+}
+
+TEST_F(UtilityTest, PerimeterFilter)
+{
+    std::list<Shape *> shapes = {t345};
+    CompoundShape cs1("1", shapes);
+    std::list<Shape *> shapes1 = {&cs1, e43, r34};
+    CompoundShape cs0("0", shapes1);
+    // return shapes that perimeter in range 10 >= && 5 <=, but don't include compoundShape_0 itself.
+    std::deque<Shape *> dq = filterShape(&cs0, PerimeterFilter(10, 5));
+    std::deque<Shape *>::iterator itr = dq.begin();
+    std::string str = "";
+    while (itr != dq.end())
+    {
+        str += (*itr)->info();
+        ++itr;
+    }
+
+    EXPECT_EQ("info", str);
+}
+TEST_F(UtilityTest, ColorFilter)
+{
+    std::list<Shape *> shapes = {t345};
+    CompoundShape cs1("1", shapes);
+    std::list<Shape *> shapes1 = {&cs1, e43, r34};
+    CompoundShape cs0("0", shapes1);
+    // return shapes that color match "white", but don't include compoundShape_0 itself.
+    std::deque<Shape *> dq = filterShape(&cs0, ColorFilter("white"));
+    std::deque<Shape *>::iterator itr = dq.begin();
+    std::string str = "";
+    while (itr != dq.end())
+    {
+        str += (*itr)->info();
+        ++itr;
+    }
+
+    EXPECT_EQ("info", str);
+}
+
+TEST_F(UtilityTest, TypeFilter)
+{
+    std::list<Shape *> shapes = {t345};
+    CompoundShape cs1("1", shapes);
+    std::list<Shape *> shapes1 = {&cs1, e43, r34};
+    CompoundShape cs0("0", shapes1);
+    // return shapes that type match "Compound Shape", but don't include compoundShape_0 itself.
+    std::deque<Shape *> dq = filterShape(&cs0, TypeFilter("Compound Shape"));
+    std::deque<Shape *>::iterator itr = dq.begin();
+    std::string str = "";
+    while (itr != dq.end())
+    {
+        str += (*itr)->info();
+        ++itr;
+    }
+
+    EXPECT_EQ("info", str);
+}
