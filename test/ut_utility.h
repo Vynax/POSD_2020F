@@ -11,7 +11,7 @@ protected:
         triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
         t345 = new Triangle("2", triangleVector, "red");
         e43 = new Ellipse("3", 4, 3, "blue");
-        r34 = new Rectangle("4", 3, 4, "yellow");
+        r34 = new Rectangle("4", 3, 4, "white");
     }
 
     void TearDown() override
@@ -75,7 +75,7 @@ TEST_F(UtilityTest, AreaFilter)
         ++itr;
     }
 
-    EXPECT_EQ("info", str);
+    EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])}Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", str);
 }
 
 TEST_F(UtilityTest, PerimeterFilter)
@@ -94,7 +94,7 @@ TEST_F(UtilityTest, PerimeterFilter)
         ++itr;
     }
 
-    EXPECT_EQ("info", str);
+    EXPECT_EQ("", str);
 }
 TEST_F(UtilityTest, ColorFilter)
 {
@@ -112,7 +112,7 @@ TEST_F(UtilityTest, ColorFilter)
         ++itr;
     }
 
-    EXPECT_EQ("info", str);
+    EXPECT_EQ("Rectangle (3.000, 4.000)", str);
 }
 
 TEST_F(UtilityTest, TypeFilter)
@@ -131,5 +131,5 @@ TEST_F(UtilityTest, TypeFilter)
         ++itr;
     }
 
-    EXPECT_EQ("info", str);
+    EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])}", str);
 }

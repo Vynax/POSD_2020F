@@ -1,5 +1,6 @@
 #include "shape.h"
 #include "iterator.h"
+#include <deque>
 
 Shape *getShapeById(Shape *shape, std::string id)
 {
