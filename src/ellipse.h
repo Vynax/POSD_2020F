@@ -53,6 +53,11 @@ public:
         // ex. Ellipse (3.712, 4.000)
         return "Ellipse (" + DTS(_semiMajorAxes, 3) + ", " + DTS(_semiMinorAxes, 3) + ")";
     }
+
+    std::string type() const
+    {
+        return "Ellipse";
+    }
 };
 
 #endif

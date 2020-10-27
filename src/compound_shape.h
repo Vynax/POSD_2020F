@@ -1,17 +1,25 @@
 #include "shape.h"
 #include "rectangle.h"
+#include "shape_iterator.h"
+#include <list>
 
 class CompoundShape : public Shape
 {
-protected:
-    std::vector<Shape *> *_shapes;
 
 public:
-    CompoundShape(std::string id, std::vector<Shape *> *shapes) : Shape(id), _shapes(shapes)
+    CompoundShape(std::string id, std::list<Shape *> shapes) : Shape(id), _shapes(shapes)
     {
         _color = "transparent";
         // The default color of compound shape should be "transparent".
-        if (_shapes->size() == 0)
+        if (_shapes.size() == 0)
+            throw std::string("This is not a compound shape!");
+        // When there's no shape contain in the compound shape,
+        // should throw std::string "This is not a compound shape!"
+    }
+
+    CompoundShape(std::string id, std::list<Shape *> shapes, string color) : Shape(id, color), _shapes(shapes)
+    {
+        if (_shapes.size() == 0)
             throw std::string("This is not a compound shape!");
         // When there's no shape contain in the compound shape,
         // should throw std::string "This is not a compound shape!"
@@ -19,10 +27,10 @@ public:
 
     double area() const
     {
-        vector<Shape *>::iterator ptr;
+        list<Shape *>::const_iterator ptr;
         // return sum of all containing shapes area.
         double areaN;
-        for (areaN = 0, ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        for (areaN = 0, ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             areaN += (*ptr)->area();
         }
@@ -31,10 +39,10 @@ public:
 
     double perimeter() const
     {
-        vector<Shape *>::iterator ptr;
+        list<Shape *>::const_iterator ptr;
         // return sum of all containing shapes perimeter.
         double perimeterN;
-        for (perimeterN = 0, ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        for (perimeterN = 0, ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             perimeterN += (*ptr)->perimeter();
         }
@@ -46,11 +54,11 @@ public:
         // return list of all containing shapes info with wrapped of "CompoundShape {}".
         // ex."Compound Shape {Ellipse (4.000, 3.000), Rectangle (3.000, 4.000), Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])}"
         std::string str("Compound Shape {");
-        vector<Shape *>::iterator ptr;
-        for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        list<Shape *>::const_iterator ptr;
+        for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             str += (*ptr)->info();
-            if (ptr < (_shapes->end()) - 1)
+            if (ptr != --(_shapes.end()))
                 str += ", ";
         }
         str += "}";
@@ -60,7 +68,7 @@ public:
     void addShape(Shape *shape)
     {
         // add shape into compound shape.
-        _shapes->push_back(shape);
+        _shapes.push_back(shape);
     }
 
     void deleteShapeById(std::string id)
@@ -68,13 +76,13 @@ public:
         // search and delete a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected delete shape but shape not found"
-        vector<Shape *>::iterator ptr;
+        list<Shape *>::const_iterator ptr;
         //int deleteCount = 0;
-        for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             if ((*ptr)->id() == id)
             {
-                _shapes->erase(ptr);
+                _shapes.erase(ptr);
                 return;
                 // return;
             }
@@ -95,14 +103,14 @@ public:
         throw std::string("Expected delete shape but shape not found");
     }
 
-    Shape *getShapeById(std::string id)
+    Shape *getShapeById(std::string id) const
     {
         // search and return a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected get shape but shape not found"
         //return (Shape *)(new Rectangle("0", 3, 4));
-        vector<Shape *>::iterator ptr;
-        for (ptr = _shapes->begin(); ptr < _shapes->end(); ptr++)
+        list<Shape *>::const_iterator ptr;
+        for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             if ((*ptr)->id() == id)
             {
@@ -121,6 +129,19 @@ public:
         }
         throw std::string("Expected get shape but shape not found");
     }
+    std::string type() const
+    {
+        return "Compound Shape";
+    }
+
+    Iterator *createIterator() const
+    {
+        // return ShapeIterator
+        return new ShapeIterator<std::list<Shape *>::const_iterator>(_shapes.begin(), _shapes.end());
+    }
+
+protected:
+    std::list<Shape *> _shapes;
 
     // int deleteShapeInCompound(Shape *CS, std::string id)
     // {

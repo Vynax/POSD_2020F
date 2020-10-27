@@ -5,6 +5,8 @@
 #include "ut_sort.h"
 #include "ut_terminal.h"
 #include "ut_compound_shape.h"
+#include "ut_iterator.h"
+#include "ut_utility.h"
 #include <string>
 #include <iostream>
 

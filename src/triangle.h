@@ -115,6 +115,11 @@ public:
         for (ptr = _vectors.begin(); ptr < _vectors.end(); ptr++)
             delete *ptr;
     }*/
+
+    std::string type() const
+    {
+        return "Triangle";
+    }
 };
 
 #endif

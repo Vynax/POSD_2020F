@@ -52,6 +52,11 @@ public:
         s = s + ", " + DTS(_width, 3) + ")";*/
         return "Rectangle (" + DTS(_length, 3) + ", " + DTS(_width, 3) + ")";
     }
+
+    std::string type() const
+    {
+        return "Rectangle";
+    }
 };
 
 #endif

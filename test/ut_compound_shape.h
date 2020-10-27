@@ -27,68 +27,70 @@ protected:
 };
 TEST_F(CompoundTest, Constructor)
 {
-    std::vector<Shape *> shapesVector = {t345, r34, e43};
+    std::list<Shape *> shapes = {t345, r34, e43};
     // shapesVector.push_back(t345);
     // shapesVector.push_back(r34);
     // shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *>::iterator ptr;
+    ptr = shapes.begin();
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
-    EXPECT_EQ(6, shapesVector.at(0)->area());
-    EXPECT_EQ(12, shapesVector.at(1)->area());
-    EXPECT_NEAR(37.699, shapesVector.at(2)->area(), 0.001);
+    EXPECT_EQ(6, (*ptr)->area());
+    EXPECT_EQ(12, (*++ptr)->area());
+    EXPECT_NEAR(37.699, (*++ptr)->area(), 0.001);
 }
 
 TEST_F(CompoundTest, Area)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_NEAR(55.699, cs.area(), 0.001);
 }
 
 TEST_F(CompoundTest, Perimeter)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_NEAR(48.849, cs.perimeter(), 0.001);
 }
 
 TEST_F(CompoundTest, Info)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
 }
 
 TEST_F(CompoundTest, GetById)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_EQ("Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", cs.getShapeById("2")->info());
 }
 
 TEST_F(CompoundTest, GetByIdException)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     try
     {
@@ -103,11 +105,11 @@ TEST_F(CompoundTest, GetByIdException)
 
 TEST_F(CompoundTest, DeleteById)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("0", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("0", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
     cs.deleteShapeById("0");
@@ -116,11 +118,11 @@ TEST_F(CompoundTest, DeleteById)
 
 TEST_F(CompoundTest, DeleteByIdException)
 {
-    std::vector<Shape *> shapesVector;
-    shapesVector.push_back(t345);
-    shapesVector.push_back(r34);
-    shapesVector.push_back(e43);
-    CompoundShape cs("222", &shapesVector);
+    std::list<Shape *> shapes;
+    shapes.push_back(t345);
+    shapes.push_back(r34);
+    shapes.push_back(e43);
+    CompoundShape cs("222", shapes);
     //Shape *shapes[3] = {t345, r34, e43};
     EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}", cs.info());
     try
@@ -138,12 +140,12 @@ TEST_F(CompoundTest, DeleteByIdException)
 
 TEST_F(CompoundTest, DeleteInTripleLevel)
 {
-    std::vector<Shape *> shapesVector = {t345, r34, e43};
-    CompoundShape cs1("s_0_1_2", &shapesVector);
-    std::vector<Shape *> shapesV2 = {new Rectangle("12", 2.000, 6.000, "green"), new Rectangle("25", 5.000, 5.000, "white")};
-    CompoundShape cs2("s_12_25", &shapesV2);
-    std::vector<Shape *> shapesV3 = {&cs1, &cs2};
-    CompoundShape cs3("cs3", &shapesV3);
+    std::list<Shape *> shapes = {t345, r34, e43};
+    CompoundShape cs1("s_0_1_2", shapes);
+    std::list<Shape *> shapesV2 = {new Rectangle("12", 2.000, 6.000, "green"), new Rectangle("25", 5.000, 5.000, "white")};
+    CompoundShape cs2("s_12_25", shapesV2);
+    std::list<Shape *> shapesV3 = {&cs1, &cs2};
+    CompoundShape cs3("cs3", shapesV3);
     EXPECT_EQ("Compound Shape {Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}, Compound Shape {Rectangle (2.000, 6.000), Rectangle (5.000, 5.000)}}", cs3.info());
     try
     {
@@ -157,13 +159,13 @@ TEST_F(CompoundTest, DeleteInTripleLevel)
 
 TEST_F(CompoundTest, Exception)
 {
-    std::vector<Shape *> shapesVector;
+    std::list<Shape *> shapes;
     // shapesVector.push_back(t345);
     // shapesVector.push_back(r34);
     // shapesVector.push_back(e43);
     try
     {
-        CompoundShape cs("0", &shapesVector); //==> the argument should > 0 or the rectangle can't be build.
+        CompoundShape cs("0", shapes); //==> the argument should > 0 or the rectangle can't be build.
         FAIL();
     }
     catch (std::string e)
