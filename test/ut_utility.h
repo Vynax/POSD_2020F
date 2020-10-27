@@ -85,7 +85,7 @@ TEST_F(UtilityTest, PerimeterFilter)
     std::list<Shape *> shapes1 = {&cs1, e43, r34};
     CompoundShape cs0("0", shapes1);
     // return shapes that perimeter in range 10 >= && 5 <=, but don't include compoundShape_0 itself.
-    std::deque<Shape *> dq = filterShape(&cs0, PerimeterFilter(10, 5));
+    std::deque<Shape *> dq = filterShape(&cs0, PerimeterFilter(12, 5));
     std::deque<Shape *>::iterator itr = dq.begin();
     std::string str = "";
     while (itr != dq.end())
@@ -94,8 +94,9 @@ TEST_F(UtilityTest, PerimeterFilter)
         ++itr;
     }
 
-    EXPECT_EQ("", str);
+    EXPECT_EQ("Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])}Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", str);
 }
+
 TEST_F(UtilityTest, ColorFilter)
 {
     std::list<Shape *> shapes = {t345};
