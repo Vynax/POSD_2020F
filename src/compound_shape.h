@@ -1,3 +1,6 @@
+#ifndef COMPOUND_SHAPE_H
+#define COMPOUND_SHAPE_H
+
 #include "shape.h"
 #include "rectangle.h"
 #include "shape_iterator.h"
@@ -166,3 +169,5 @@ protected:
     //     return deleteCount;
     // }
 };
+
+#endif
