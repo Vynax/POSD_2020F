@@ -38,7 +38,7 @@ std::deque<Node *> filterNode(Node *node, Filter filter)
 class SizeFilter
 {
 public:
-    SizeFilter(double upperBound, double lowerBound) {}
+    SizeFilter(double upperBound, double lowerBound) : _upperBound(upperBound), _lowerBound(lowerBound) {}
     bool operator()(Node *node) const
     {
         if (node->size() <= _upperBound && node->size() >= _lowerBound)
