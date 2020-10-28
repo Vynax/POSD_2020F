@@ -1,8 +1,9 @@
 #include "shape.h"
 #include "iterator.h"
+#include "node.h"
 #include <deque>
 
-Shape *getShapeById(Shape *shape, std::string id)
+/*Shape *getShapeById(Shape *shape, std::string id)
 {
     // access the shape with iterator pattern.
     // DO NOT use Type Checking or Dynamic Type that would violate OCP to implement the function.
@@ -35,7 +36,7 @@ Shape *getShapeById(Shape *shape, std::string id)
     }
 
     throw std::string("Expected get shape but shape not found");
-}
+}*/
 
 template <class Filter>
 std::deque<Shape *> filterShape(Shape *shape, Filter filter)
@@ -72,6 +73,13 @@ std::deque<Shape *> filterShape(Shape *shape, Filter filter)
     }
     return _dq;
 }
+
+class SizeFilter
+{
+public:
+    SizeFilter(double upperBound, double lowerBound) {}
+    bool operator()(Node *node) const {}
+};
 
 class AreaFilter
 {
