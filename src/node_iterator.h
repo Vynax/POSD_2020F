@@ -7,7 +7,7 @@ template <class ForwardIterator>
 class NodeIterator : public Iterator
 {
 public:
-    NodeIterator(ForwardIterator begin, ForwardIterator end) : _begin(begin), _end(end);
+    NodeIterator(ForwardIterator begin, ForwardIterator end) : _begin(begin), _end(end)
     {
         // initialize iterator.
         first();
