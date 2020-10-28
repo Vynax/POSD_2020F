@@ -41,7 +41,8 @@ public:
 
     void addNode(Node *node)
     {
-        node->updatePath("/" + _name);
+        //cout << _name << endl;
+        node->updatePath(_path + "/" + _name);
         _nodes.push_back(node);
     }
 
