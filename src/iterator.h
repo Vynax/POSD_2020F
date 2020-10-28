@@ -1,7 +1,8 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
-#include "node.h"
+class Node;
+
 class Iterator
 {
 public:

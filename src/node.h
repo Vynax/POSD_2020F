@@ -1,13 +1,12 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <sstream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 class Iterator;
+
 class Node
 {
 protected:
@@ -21,7 +20,7 @@ public:
     std::string id() const { return _id; };
     std::string name() const { return _name; };
 
-    std::string route() const { return _path + "/" + _name; }; // the "virtual" of this funtion is optional.
+    virtual std::string route() const; // the "virtual" of this funtion is optional.
     virtual double size() const;
     virtual void updatePath(std::string path);
 

@@ -14,6 +14,12 @@ Node::Node(std::string id, std::string name, double size) : _id(id), _name(name)
     null_itr = new NullIterator();
 }
 
+std::string Node::route() const { return _path + "/" + _name; }
+
+double Node::size() const { return _size; }
+
+void Node::updatePath(std::string path) { _path = path; }
+
 void Node::addNode(Node *node)
 {
     throw std::string("only folder can add node.");
