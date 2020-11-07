@@ -8,13 +8,12 @@
 class Folder : public Node
 {
 public:
-    Folder(std::string id, std::string name) : Node(id, name)
+    Folder(std::string id, std::string name) : Node(id, name, 0.0)
     {
-        _size = 0;
         _nodes = {};
     } // the default size of folder is zero.
 
-    Folder(std::string id, std::string name, double size) : Node(id, name, size) {}
+    //Folder(std::string id, std::string name, double size) : Node(id, name, size) {}
     // implement any functions inherit from Node that you think is suitable.
     double size() const
     {
@@ -30,19 +29,19 @@ public:
 
     void updatePath(std::string path)
     {
-        _path = path;
+        Node::updatePath(path);
         list<Node *>::const_iterator ptr;
         // return sum of all containing shapes area.
         for (ptr = _nodes.begin(); ptr != _nodes.end(); ptr++)
         {
-            (*ptr)->updatePath(_path + "/" + _name);
+            (*ptr)->updatePath(route());
         }
     }
 
     void addNode(Node *node)
     {
         //cout << _name << endl;
-        node->updatePath(_path + "/" + _name);
+        node->updatePath(route());
         _nodes.push_back(node);
     }
 

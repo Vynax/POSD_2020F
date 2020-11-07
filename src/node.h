@@ -9,7 +9,7 @@ class Iterator;
 
 class Node
 {
-protected:
+private:
     std::string _id, _name, _path;
     double _size;
     Iterator *null_itr;

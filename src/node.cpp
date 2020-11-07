@@ -1,12 +1,12 @@
 #include "node.h"
 #include "null_iterator.h"
 
-Node::Node(std::string id, std::string name) : _id(id), _name(name)
-{
-    _path = "";
-    null_itr = new NullIterator();
-    _size = 0;
-}
+// Node::Node(std::string id, std::string name) : _id(id), _name(name)
+// {
+//     _path = "";
+//     null_itr = new NullIterator();
+//     _size = 0;
+// }
 
 Node::Node(std::string id, std::string name, double size) : _id(id), _name(name), _size(size)
 {

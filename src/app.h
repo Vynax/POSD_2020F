@@ -6,7 +6,7 @@
 class App : public Node
 {
 public:
-    App(std::string id, std::string name) : Node(id, name) {}
+    //App(std::string id, std::string name) : Node(id, name) {}
 
     App(std::string id, std::string name, double size) : Node(id, name, size) {}
 
