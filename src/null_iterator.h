@@ -21,7 +21,7 @@ public:
         return true;
     }
 
-    Node *currentItem() const
+    Shape *currentItem() const
     {
         throw std::string("No child member!");
     }
