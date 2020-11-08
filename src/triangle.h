@@ -3,6 +3,7 @@
 
 #include "shape.h"
 #include "two_dimensional_coordinate.h"
+#include "visitor.h"
 #include <math.h>
 
 //class Tritest(vector<TwoDimensionalCoordinate *> aaa){};
@@ -50,6 +51,21 @@ public:
         }
         if (!triangletest()) //如果triangletest失敗就回傳錯誤資訊
             throw string("This is not a triangle!");
+    }
+
+    void accept(Visitor *visitor)
+    {
+        (*visitor).visit(this);
+    }
+
+    double *getLength()
+    {
+        return length;
+    }
+
+    vector<TwoDimensionalCoordinate *> getVectors()
+    {
+        return _vectors;
     }
 
     double area() const

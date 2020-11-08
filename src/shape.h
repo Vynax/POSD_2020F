@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+class Visitor;
 //#include "null_iterator.h"
 //#include "iterator.h"
 class Iterator;
@@ -33,6 +34,7 @@ public:
     virtual void deleteShapeById(std::string id);      // throw std::string "Only compound shape can delete shape!"
     virtual Shape *getShapeById(std::string id) const; // throw std::string "Only compound shape can get shape!"
     virtual Iterator *createIterator() const;
+    virtual void accept(Visitor *visitor) = 0;
     virtual ~Shape();
 };
 

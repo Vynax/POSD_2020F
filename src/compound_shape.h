@@ -28,6 +28,16 @@ public:
         // should throw std::string "This is not a compound shape!"
     }
 
+    std::list<Shape *> getShapes()
+    {
+        return _shapes;
+    }
+
+    void accept(Visitor *visitor)
+    {
+        (*visitor).visit(this);
+    }
+
     double area() const
     {
         list<Shape *>::const_iterator ptr;

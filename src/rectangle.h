@@ -2,6 +2,7 @@
 #define RECTANGLE_H
 
 #include "shape.h"
+#include "visitor.h"
 
 using namespace std;
 
@@ -29,6 +30,21 @@ public:
         // _width = width;
         // _id = id;
         // _color = color;
+    }
+
+    void accept(Visitor *visitor)
+    {
+        (*visitor).visit(this);
+    }
+
+    double getLength()
+    {
+        return _length;
+    }
+
+    double getWidth()
+    {
+        return _width;
     }
 
     double area() const

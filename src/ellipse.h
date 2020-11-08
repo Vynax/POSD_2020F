@@ -2,6 +2,7 @@
 #define ELLIPSE_H
 
 #include "shape.h"
+#include "visitor.h"
 #include <math.h>
 
 using namespace std;
@@ -32,6 +33,21 @@ public:
             throw std::string("This is not an ellipse!");
         _semiMajorAxes = semiMajorAxes;
         _semiMinorAxes = semiMinorAxes;
+    }
+
+    double getSemiMajorAxes()
+    {
+        return _semiMajorAxes;
+    }
+
+    double getSemiMinorAxes()
+    {
+        return _semiMinorAxes;
+    }
+
+    void accept(Visitor *visitor)
+    {
+        (*visitor).visit(this);
     }
 
     double area() const
