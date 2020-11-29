@@ -157,7 +157,7 @@ TEST_F(CompoundTest, DeleteInTripleLevel)
     EXPECT_EQ("Compound Shape {Compound Shape {Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000]), Rectangle (3.000, 4.000), Ellipse (4.000, 3.000)}, Compound Shape {Rectangle (5.000, 5.000)}}", cs3.info());
 }
 
-TEST_F(CompoundTest, Exception)
+/* TEST_F(CompoundTest, Exception)
 {
     std::list<Shape *> shapes;
     // shapesVector.push_back(t345);
@@ -174,4 +174,4 @@ TEST_F(CompoundTest, Exception)
     }
 
     //Shape *shapes[3] = {t345, r34, e43};
-}
+} */

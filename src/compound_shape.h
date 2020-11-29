@@ -10,7 +10,7 @@ class CompoundShape : public Shape
 {
 
 public:
-    CompoundShape(std::string id, std::list<Shape *> shapes) : Shape(id), _shapes(shapes)
+    /*CompoundShape(std::string id, std::list<Shape *> shapes) : Shape(id), _shapes(shapes)
     {
         _color = "transparent";
         // The default color of compound shape should be "transparent".
@@ -18,12 +18,13 @@ public:
             throw std::string("This is not a compound shape!");
         // When there's no shape contain in the compound shape,
         // should throw std::string "This is not a compound shape!"
-    }
+    }*/
 
-    CompoundShape(std::string id, std::list<Shape *> shapes, string color) : Shape(id, color), _shapes(shapes)
+    CompoundShape(std::string id, std::list<Shape *> shapes, string color = "transparent") : Shape(id, color), _shapes(shapes)
     {
-        if (_shapes.size() == 0)
-            throw std::string("This is not a compound shape!");
+        // The default color of compound shape should be "transparent".
+        /* if (_shapes.size() == 0)
+            throw std::string("This is not a compound shape!"); */
         // When there's no shape contain in the compound shape,
         // should throw std::string "This is not a compound shape!"
     }
