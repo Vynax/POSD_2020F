@@ -1,4 +1,5 @@
 #include "shape.h"
+#include <stack>
 class Rectangle;
 class Ellipse;
 class Triangle;
