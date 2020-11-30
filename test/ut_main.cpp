@@ -9,6 +9,8 @@
 #include "ut_utility.h"
 #include "ut_visitor.h"
 #include "ut_scanner.h"
+#include "ut_shape_builder.h"
+#include "ut_shape_parser.h"
 #include <string>
 #include <iostream>
 
