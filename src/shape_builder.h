@@ -39,6 +39,7 @@ public:
     {
         // for notifing beginning of a Compound Shape.
         _stack.push(new CompoundShape(std::to_string(id)));
+        _stack.push(nullptr);
         id++;
     }
 
@@ -46,12 +47,14 @@ public:
     {
         // for notifing ending of a Compound Shape.
         std::list<Shape *> l;
-        while (!dynamic_cast<CompoundShape *>(_stack.top()) ||
-               (dynamic_cast<CompoundShape *>(_stack.top()) && !_stack.top()->createIterator()->isDone()))
+        /* while (!dynamic_cast<CompoundShape *>(_stack.top()) ||
+               (dynamic_cast<CompoundShape *>(_stack.top()) && !_stack.top()->createIterator()->isDone())) */
+        while (_stack.top() != nullptr)
         {
             l.push_back(_stack.top());
             _stack.pop();
         }
+        _stack.pop();
         for (auto it = l.rbegin(); it != l.rend(); it++)
         {
             _stack.top()->addShape(*it);
