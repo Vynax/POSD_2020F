@@ -9,7 +9,7 @@ public:
         // throw exception std::string "next char doesn't exist." if next token not found.
 
         char c = _input[ptr];
-        char array[] = {'(', ',', ')'};
+        char array[] = {'{', '}', '(', ')', ','};
         char *p;
         int array_size = sizeof(array) / sizeof(array[0]);
         temp = "";
