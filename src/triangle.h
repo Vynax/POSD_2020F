@@ -89,17 +89,17 @@ public:
     {
         // return the info of the Triangle.
         // ex. Triangle ([0.000, 0.000], [0.000, -3.141], [-4.000, 0.000])
-        int i, j;
+        int i, size = _vectors.size();
         string s;
         s += "Triangle (";
-        for (i = 0; i < _vectors.size(); i++)
+        for (i = 0; i < size; i++)
         {
             s += "[";
             s += DTS(_vectors[i]->getX(), 3);
             s += ", ";
             s += DTS(_vectors[i]->getY(), 3);
             s += "]";
-            if (i < _vectors.size() - 1) //三個座標之間有兩個空白
+            if (i < size - 1) //三個座標之間有兩個空白
                 s += ", ";
         }
         s += ")";

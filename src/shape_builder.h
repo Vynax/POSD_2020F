@@ -1,3 +1,6 @@
+#ifndef SHAPE_BUILDER_H
+#define SHAPE_BUILDER_H
+
 #include "shape.h"
 #include <stack>
 class Rectangle;
@@ -77,3 +80,5 @@ private:
     std::stack<Shape *> _stack;
     int id = 0;
 };
+
+#endif

@@ -38,14 +38,14 @@ public:
         rule.push_back("|(Triangle +( *\\(( *\\[ *" + num + " *, *" + num + " *\\] *,){2}( *\\[ *" + num + " *, *" + num + " *\\] *\\))))");
         rule.push_back("|(area|perimeter) *");
         rule.push_back("|(inc|dec) *");
-        for (int i = 1; i < rule.size(); i++)
+        for (int i = 1; i < (int)rule.size(); i++)
             rule.at(0) += rule.at(i);
         std::string stri = input;
         pattern.assign(rule.at(0), std::regex::ECMAScript);
         std::regex_search(input, _match, pattern);
         //str1 = _match[0];
         int i = 0;
-        int final_amount = 0;
+        //int final_amount = 0;
         // .* [area|perimeter] [inc|dec]
         //int shape_amount = 0;
         int count[3] = {0}; // 0是形狀數量，1是是否有area or perimeter，2是是否有升冪或降冪
@@ -148,8 +148,7 @@ public:
         }
     }
 
-    std::string
-    showResult()
+    std::string showResult()
     {
         string outcome = "";
         if (type[1] == "inc")
@@ -160,24 +159,24 @@ public:
         {
             quickSort(shapes.begin(), shapes.end(), DescendingCompare(type[0]));
         }
-
+        int size = shapes.size();
         if (type[0] == "area")
         {
-            for (int i = 0; i < shapes.size(); i++)
+            for (int i = 0; i < size; i++)
             {
                 outcome += DTS(shapes[i]->area(), 3);
                 // cout << "shapes[" << i << "]->area=" << shapes[i]->area() << endl;
-                if (i < shapes.size() - 1)
+                if (i < size - 1)
                     outcome += "\n";
             }
         }
         else if (type[0] == "perimeter")
         {
-            for (int i = 0; i < shapes.size(); i++)
+            for (int i = 0; i < size; i++)
             {
                 outcome += DTS(shapes[i]->perimeter(), 3);
                 // cout << "shapes[" << i << "]->perimeter=" << shapes[i]->perimeter() << endl;
-                if (i < shapes.size() - 1)
+                if (i < size - 1)
                     outcome += "\n";
             }
         }

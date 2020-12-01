@@ -25,17 +25,17 @@ public:
         // DO NOT use triangle->info() to get info directly.
         // you may add public function for Triangle to get it's data members.
         vector<TwoDimensionalCoordinate *> vectors = triangle->getVectors();
-        int i, j;
+        int i, size = vectors.size();
         _info = "";
         _info += "Triangle (";
-        for (i = 0; i < vectors.size(); i++)
+        for (i = 0; i < size; i++)
         {
             _info += "[";
             _info += DTS(vectors[i]->getX(), 3);
             _info += ", ";
             _info += DTS(vectors[i]->getY(), 3);
             _info += "]";
-            if (i < vectors.size() - 1) //三個座標之間有兩個空白
+            if (i < size - 1) //三個座標之間有兩個空白
                 _info += ", ";
         }
         _info += ")";

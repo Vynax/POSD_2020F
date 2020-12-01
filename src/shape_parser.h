@@ -1,9 +1,13 @@
+#ifndef SHAPE_PARSER_H
+#define SHAPE_PARSER_H
+
 class ShapeParser
 {
 public:
     ShapeParser(std::string input)
     {
         // initialize a scanner for handling input.
+        scanner() = Scanner(input);
         // initialize a shape builder for handling building shape.
     }
 
@@ -21,4 +25,10 @@ public:
         std::deque<Shape *> result;
         return result;
     }
+
+private:
+    Scanner scanner();
+    ShapeBuilder sb;
 };
+
+#endif
