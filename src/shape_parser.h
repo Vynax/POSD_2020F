@@ -84,7 +84,7 @@ public:
                     {
                         sb.buildCompoundShapeBegin();
                         temp1 = scanner.nextToken();
-                        while (temp1 != "}")
+                        while (temp1 != "}" && scanner.input_size() >= 0)
                         {
                             parser();
                         }
