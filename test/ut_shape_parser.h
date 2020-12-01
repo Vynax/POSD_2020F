@@ -34,5 +34,5 @@ TEST(ShapeParserTest, CS_rectangle)
     std::deque<Shape *> results = sp.getResult();
 
     ASSERT_EQ(1, results.size());
-    ASSERT_EQ("Triangle ([0.000, 0.000], [0.000, -3.000], [-4.000, 0.000])", results[0]->info());
+    ASSERT_EQ("Compound Shape {Rectangle (3.000, 4.000)}", results[0]->info());
 }
