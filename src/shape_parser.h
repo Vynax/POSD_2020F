@@ -79,12 +79,12 @@ public:
                 }
                 else if (temp == "CompoundShape")
                 {
-                    temp1 = scanner.nextToken();
-                    if (temp1 == "{")
+                    temp = scanner.nextToken();
+                    if (temp == "{")
                     {
                         sb.buildCompoundShapeBegin();
-                        temp1 = scanner.nextToken();
-                        while (temp1 != "}" && scanner.input_size() >= 0)
+                        temp = scanner.nextToken();
+                        while (temp != "}")
                         {
                             parser();
                         }
