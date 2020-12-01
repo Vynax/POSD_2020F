@@ -1,6 +1,7 @@
 #ifndef SCANNER_H
 #define SCANNER_H
 
+#include <sstream>
 class Scanner
 {
 public:
@@ -12,55 +13,108 @@ public:
         // throw exception std::string "next char doesn't exist." if next token not found.
 
         char c = _input[ptr];
+        std::vector<string> word;
+        word.push_back("Ellipse");
+        word.push_back("Rectangle");
+        word.push_back("Triangle");
+        word.push_back("CompoundShape");
+
         char punct[] = {'[', ']', '{', '}', '(', ')', ','}; // punctuation 標點符號
-        char *p;
-        int punct_size = sizeof(punct) / sizeof(punct[0]);
+        std::vector<string> punct_vec;
+        punct_vec.push_back("[");
+        punct_vec.push_back("]");
+        punct_vec.push_back("{");
+        punct_vec.push_back("}");
+        punct_vec.push_back("(");
+        punct_vec.push_back(")");
+        punct_vec.push_back(",");
+
+        std::string punct_str[] = {"[", "]", "{", "}", "(", ")", ","};
+        //char *p;
+        //int punct_size = sizeof(punct) / sizeof(punct[0]);
+        //int punct_size = strlen(punct);
         temp = "";
         int size = _input.size();
-
+        //忽略空白
         if (_input[ptr] == '\0')
             throw std::string("next char doesn't exist.");
-        //忽略空白
-        if (c == ' ')
+        while (!str_in_array(temp, word) && !str_in_array(temp, punct_vec) && !isNum(temp))
         {
-            ptr++;
-            while (ptr < size)
+            if (c == ' ')
             {
-                if (_input[ptr] != ' ')
-                    break;
                 ptr++;
-            }
-            /*for (int i = ptr; i < _input.size(); i++)
+                while (ptr < size)
+                {
+                    if (_input[ptr] != ' ')
+                        break;
+                    ptr++;
+                }
+                /*for (int i = ptr; i < _input.size(); i++)
             {
                 if (_input[ptr] == ' ')
                     ptr++;
             }*/
-        }
-
-        c = _input[ptr];
-        //如果第一個字元是這些就直接回傳
-        p = std::find(punct, punct + punct_size, c);
-        //if (c == '(' || c == ',' || c == ')')
-        if (p != punct + punct_size)
-        {
-            ptr++;
-            temp = c;
-        }
-        //擷取token
-        else
-        {
-            for (; ptr < size; ptr++)
-            {
-                p = std::find(punct, punct + punct_size, _input[ptr]);
-                //if (_input[ptr] == '(' || _input[ptr] == ',' || _input[ptr] == ')' || _input[ptr] == ' ')
-                if (p != punct + punct_size || _input[ptr] == ' ')
-                    break;
-                temp += _input[ptr];
             }
-        }
-        //cout << temp << endl;
 
+            c = _input[ptr];
+            //如果第一個字元是這些就直接回傳
+
+            //if (c == '(' || c == ',' || c == ')')
+            //p = std::find(punct, punct + punct_size, c);
+            //if (p != punct + punct_size)
+            if (char_in_array(_input[ptr], punct))
+            {
+                ptr++;
+                temp = c;
+            }
+            //擷取token
+            else
+            {
+                for (; ptr < size; ptr++)
+                {
+                    //p = std::find(punct, punct + punct_size, _input[ptr]);
+                    //if (_input[ptr] == '(' || _input[ptr] == ',' || _input[ptr] == ')' || _input[ptr] == ' ')
+                    //if (p != punct + punct_size || _input[ptr] == ' ')
+                    if (char_in_array(_input[ptr], punct) || _input[ptr] == ' ')
+                        break;
+                    temp += _input[ptr];
+                }
+            }
+            //cout << temp << endl;
+        }
+        //cout << str_in_array("Ellipse", word) << endl;
+        //cout << word[0] << endl;
         return temp;
+    }
+    bool char_in_array(char input, char array[])
+    {
+        char *p;
+        size_t size = strlen(array);
+        //int size = (sizeof(array) / sizeof(array[0]));
+        p = std::find(array, array + size, input);
+        if (p != array + size) //如果input不在array裡面，p會指向最後面不存在的東西
+            return true;
+        else
+            return false;
+    }
+
+    bool str_in_array(std::string input, std::vector<string> array)
+    {
+        // std::string *p;
+        // size_t size = sizeof(array) / sizeof(array[0]);
+        // p = std::find(array, array + size, input);
+        for (size_t i = 0; i < array.size(); i++)
+        {
+            if (input == array[i])
+                return true;
+            //cout << array[i] << endl;
+        }
+
+        return false;
+        /*if (p != array + size)
+            return true;
+        else
+            return false;*/
     }
 
     bool isNum(string str)

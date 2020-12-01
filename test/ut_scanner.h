@@ -76,10 +76,10 @@ TEST(Scanner, Triangle)
 
 TEST(Scanner, Compound_Shape)
 {
-    Scanner scanner("Compound Shape { Triangle([ 0.000, 0.000 ], [ 3.000, 0.000 ], [ 0.000, 4.000 ]), Rectangle(3.000, 4.000), Ellipse(4.000, 3.000) }");
+    Scanner scanner("CompoundShape { Triangle([ 0.000, 0.000 ], [ 3.000, 0.000 ], [ 0.000, 4.000 ]), Rectangle(3.000, 4.000), Ellipse(4.000, 3.000) }");
 
-    EXPECT_EQ("Compound", scanner.nextToken());
-    EXPECT_EQ("Shape", scanner.nextToken());
+    EXPECT_EQ("CompoundShape", scanner.nextToken());
+    //EXPECT_EQ("Shape", scanner.nextToken());
     EXPECT_EQ("{", scanner.nextToken());
 
     EXPECT_EQ("Triangle", scanner.nextToken());
