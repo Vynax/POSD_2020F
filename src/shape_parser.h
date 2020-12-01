@@ -1,8 +1,8 @@
 #ifndef SHAPE_PARSER_H
 #define SHAPE_PARSER_H
 
-class Scanner;
-class ShapeBuilder;
+#include "scanner.h"
+#include "shape_builder.h"
 
 class ShapeParser
 {
