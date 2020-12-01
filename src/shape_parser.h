@@ -53,26 +53,37 @@ public:
         // the shape with invalid argument should be ignored (see example bellow).
         string temp;
         //first = scanner.nextToken();
-        while (scanner.input_size != 0)
+        try
         {
-            temp = scanner.nextToken();
-            if (!scanner.str_in_array(temp, word))
-                continue;
-            if (temp == "Ellipse")
+            while (scanner.input_size() >= 0)
             {
-                if (check_rule(ell_rule))
-                    sb.buildEllipse(array[0], array[1]);
+                //cout << scanner.input_size() << endl;
+                temp = scanner.nextToken();
+                if (!scanner.str_in_array(temp, word))
+                    continue;
+                if (temp == "Ellipse")
+                {
+                    if (check_rule(ell_rule))
+                        sb.buildEllipse(array[0], array[1]);
+                }
+                else if (temp == "Rectangle")
+                {
+                    if (check_rule(rec_rule))
+                        sb.buildRectangle(array[0], array[1]);
+                }
+                else if (temp == "Triangle")
+                {
+                    if (check_rule(tri_rule))
+                        sb.buildTriangle(array[0], array[1], array[2], array[3], array[4], array[5]);
+                }
+                else if (temp == "CompoundShape")
+                {
+                }
             }
-            else if (temp == "Rectangle")
-            {
-                if (check_rule(rec_rule))
-                    sb.buildRectangle(array[0], array[1]);
-            }
-            else if (temp == "Triangle")
-            {
-                if (check_rule(tri_rule))
-                    sb.buildTriangle(array[0], array[1], array[2], array[3], array[4], array[5]);
-            }
+        }
+        catch (std::string s)
+        {
+            //cout << s << endl;
         }
     }
 

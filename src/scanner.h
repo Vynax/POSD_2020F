@@ -5,10 +5,8 @@
 class Scanner
 {
 public:
-    int input_size;
     Scanner(std::string input = "") : _input(input)
     {
-        input_size = input.size();
     }
 
     std::string nextToken()
@@ -49,13 +47,11 @@ public:
             if (c == ' ')
             {
                 ptr++;
-                input_size--;
                 while (ptr < size)
                 {
                     if (_input[ptr] != ' ')
                         break;
                     ptr++;
-                    input_size--;
                 }
                 /*for (int i = ptr; i < _input.size(); i++)
             {
@@ -74,7 +70,6 @@ public:
             {
                 ptr++;
                 temp = c;
-                input_size--;
             }
             //擷取token
             else
@@ -84,7 +79,6 @@ public:
                     //p = std::find(punct, punct + punct_size, _input[ptr]);
                     //if (_input[ptr] == '(' || _input[ptr] == ',' || _input[ptr] == ')' || _input[ptr] == ' ')
                     //if (p != punct + punct_size || _input[ptr] == ' ')
-                    input_size--;
                     if (char_in_array(_input[ptr], punct) || _input[ptr] == ' ')
                         break;
                     temp += _input[ptr];
@@ -95,6 +89,11 @@ public:
         //cout << str_in_array("Ellipse", word) << endl;
         //cout << word[0] << endl;
         return temp;
+    }
+
+    int input_size()
+    {
+        return _input.size();
     }
     bool char_in_array(char input, char array[])
     {
