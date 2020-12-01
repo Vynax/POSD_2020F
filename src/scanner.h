@@ -5,7 +5,11 @@
 class Scanner
 {
 public:
-    Scanner(std::string input = "") : _input(input) {}
+    int input_size;
+    Scanner(std::string input = "") : _input(input)
+    {
+        input_size = input.size();
+    }
 
     std::string nextToken()
     {
@@ -37,17 +41,21 @@ public:
         int size = _input.size();
         //忽略空白
         if (_input[ptr] == '\0')
+        {
             throw std::string("next char doesn't exist.");
+        }
         while (!str_in_array(temp, word) && !str_in_array(temp, punct_vec) && !isNum(temp))
         {
             if (c == ' ')
             {
                 ptr++;
+                input_size--;
                 while (ptr < size)
                 {
                     if (_input[ptr] != ' ')
                         break;
                     ptr++;
+                    input_size--;
                 }
                 /*for (int i = ptr; i < _input.size(); i++)
             {
@@ -66,6 +74,7 @@ public:
             {
                 ptr++;
                 temp = c;
+                input_size--;
             }
             //擷取token
             else
@@ -75,6 +84,7 @@ public:
                     //p = std::find(punct, punct + punct_size, _input[ptr]);
                     //if (_input[ptr] == '(' || _input[ptr] == ',' || _input[ptr] == ')' || _input[ptr] == ' ')
                     //if (p != punct + punct_size || _input[ptr] == ' ')
+                    input_size--;
                     if (char_in_array(_input[ptr], punct) || _input[ptr] == ' ')
                         break;
                     temp += _input[ptr];
@@ -116,6 +126,10 @@ public:
         else
             return false;*/
     }
+    bool isDone()
+    {
+        return done;
+    }
 
     bool isNum(string str)
     {
@@ -146,6 +160,7 @@ private:
     std::string _input = "";
     std::string temp = "";
     int ptr = 0;
+    bool done;
 };
 
 #endif
