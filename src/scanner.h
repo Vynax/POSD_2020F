@@ -4,7 +4,7 @@
 class Scanner
 {
 public:
-    Scanner(std::string input) : _input(input) {}
+    Scanner(std::string input = "") : _input(input) {}
 
     std::string nextToken()
     {
