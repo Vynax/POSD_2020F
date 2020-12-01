@@ -1,6 +1,9 @@
 #ifndef SHAPE_PARSER_H
 #define SHAPE_PARSER_H
 
+class Scanner;
+class ShapeBuilder;
+
 class ShapeParser
 {
 public:
