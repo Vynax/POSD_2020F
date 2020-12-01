@@ -52,6 +52,7 @@ public:
         // use functions in ShapeBuilder to build out the shape.
         // the shape with invalid argument should be ignored (see example bellow).
         string temp;
+        string temp1;
         //first = scanner.nextToken();
         try
         {
@@ -78,6 +79,17 @@ public:
                 }
                 else if (temp == "CompoundShape")
                 {
+                    temp1 = scanner.nextToken();
+                    if (temp1 == "{")
+                    {
+                        sb.buildCompoundShapeBegin();
+                        temp1 = scanner.nextToken();
+                        while (temp1 != "}")
+                        {
+                            parser();
+                        }
+                        sb.buildCompoundShapeEnd();
+                    }
                 }
             }
         }
