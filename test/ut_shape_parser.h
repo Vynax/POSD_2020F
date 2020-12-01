@@ -36,3 +36,14 @@ TEST(ShapeParserTest, CS_rectangle)
     ASSERT_EQ(1, results.size());
     ASSERT_EQ("Compound Shape {Rectangle (3.000, 4.000)}", results[0]->info());
 }
+
+TEST(ShapeParserTest, CS_level3_rectangle)
+{
+    ShapeParser sp("CompoundShape { CompoundShape{ Rectangle (3.000, 4.000) }}");
+    sp.parser();
+
+    std::deque<Shape *> results = sp.getResult();
+
+    ASSERT_EQ(1, results.size());
+    ASSERT_EQ("Compound Shape {Compound Shape {Rectangle (3.000, 4.000)}}", results[0]->info());
+}
