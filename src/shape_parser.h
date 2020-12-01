@@ -10,7 +10,7 @@ public:
     ShapeParser(std::string input)
     {
         // initialize a scanner for handling input.
-        scanner() = Scanner(input);
+        scanner = Scanner(input);
         // initialize a shape builder for handling building shape.
     }
 
@@ -30,7 +30,7 @@ public:
     }
 
 private:
-    Scanner scanner();
+    Scanner scanner;
     ShapeBuilder sb;
 };
 
