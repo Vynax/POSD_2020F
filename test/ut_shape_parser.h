@@ -25,3 +25,14 @@ TEST(ShapeParserTest, parser_multi_simple_shapes_with_one_shape_contain_invalid_
     EXPECT_EQ("Ellipse (4.200, 3.700)", results[1]->info());
     EXPECT_EQ("Triangle ([0.000, 0.000], [0.000, -3.000], [-4.000, 0.000])", results[2]->info());
 }
+
+TEST(ShapeParserTest, CS_rectangle)
+{
+    ShapeParser sp("CompoundShape { Rectangle (3.000, 4.000) }");
+    sp.parser();
+
+    std::deque<Shape *> results = sp.getResult();
+
+    ASSERT_EQ(1, results.size());
+    ASSERT_EQ("Triangle ([0.000, 0.000], [0.000, -3.000], [-4.000, 0.000])", results[0]->info());
+}

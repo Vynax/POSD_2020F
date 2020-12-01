@@ -60,6 +60,8 @@ public:
             {
                 //cout << scanner.input_size() << endl;
                 temp = scanner.nextToken();
+                if (temp == "}")
+                    return;
                 if (!scanner.str_in_array(temp, word))
                     continue;
                 if (temp == "Ellipse")
@@ -83,11 +85,7 @@ public:
                     if (temp == "{")
                     {
                         sb.buildCompoundShapeBegin();
-                        temp = scanner.nextToken();
-                        while (temp != "}")
-                        {
-                            parser();
-                        }
+                        parser();
                         sb.buildCompoundShapeEnd();
                     }
                 }
