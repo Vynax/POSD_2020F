@@ -1,6 +1,7 @@
 #ifndef SHAPE_PARSER_H
 #define SHAPE_PARSER_H
 
+#include "shape.h"
 #include "scanner.h"
 #include "shape_builder.h"
 #include <sstream>
@@ -120,14 +121,6 @@ public:
         return true;
     }
 
-    double STD(std::string s)
-    {
-        double num;
-        stringstream ss;
-        ss << s;
-        ss >> num;
-        return num;
-    }
     std::deque<Shape *> getResult()
     {
         // return result.

@@ -7,6 +7,18 @@ class Scanner
 public:
     Scanner(std::string input = "") : _input(input)
     {
+        word.push_back("Ellipse");
+        word.push_back("Rectangle");
+        word.push_back("Triangle");
+        word.push_back("CompoundShape");
+
+        punct_vec.push_back("[");
+        punct_vec.push_back("]");
+        punct_vec.push_back("{");
+        punct_vec.push_back("}");
+        punct_vec.push_back("(");
+        punct_vec.push_back(")");
+        punct_vec.push_back(",");
     }
 
     std::string nextToken()
@@ -15,23 +27,10 @@ public:
         // throw exception std::string "next char doesn't exist." if next token not found.
 
         char c = _input[ptr];
-        std::vector<string> word;
-        word.push_back("Ellipse");
-        word.push_back("Rectangle");
-        word.push_back("Triangle");
-        word.push_back("CompoundShape");
 
         char punct[] = {'[', ']', '{', '}', '(', ')', ','}; // punctuation 標點符號
-        std::vector<string> punct_vec;
-        punct_vec.push_back("[");
-        punct_vec.push_back("]");
-        punct_vec.push_back("{");
-        punct_vec.push_back("}");
-        punct_vec.push_back("(");
-        punct_vec.push_back(")");
-        punct_vec.push_back(",");
 
-        std::string punct_str[] = {"[", "]", "{", "}", "(", ")", ","};
+        //std::string punct_str[] = {"[", "]", "{", "}", "(", ")", ","};
         //char *p;
         //int punct_size = sizeof(punct) / sizeof(punct[0]);
         //int punct_size = strlen(punct);
@@ -44,6 +43,7 @@ public:
         }
         while (!str_in_array(temp, word) && !str_in_array(temp, punct_vec) && !isNum(temp))
         {
+            //只要是空白就繼續跑，跑到不是空白為止
             if (c == ' ')
             {
                 ptr++;
@@ -53,32 +53,23 @@ public:
                         break;
                     ptr++;
                 }
-                /*for (int i = ptr; i < _input.size(); i++)
-            {
-                if (_input[ptr] == ' ')
-                    ptr++;
-            }*/
             }
 
             c = _input[ptr];
-            //如果第一個字元是這些就直接回傳
 
-            //if (c == '(' || c == ',' || c == ')')
-            //p = std::find(punct, punct + punct_size, c);
-            //if (p != punct + punct_size)
+            //擷取token
+
+            //如果第一個字元是這些就直接回傳
             if (char_in_array(_input[ptr], punct))
             {
                 ptr++;
                 temp = c;
             }
-            //擷取token
             else
             {
+                //只要不是合法標點符號或空白就加入token
                 for (; ptr < size; ptr++)
                 {
-                    //p = std::find(punct, punct + punct_size, _input[ptr]);
-                    //if (_input[ptr] == '(' || _input[ptr] == ',' || _input[ptr] == ')' || _input[ptr] == ' ')
-                    //if (p != punct + punct_size || _input[ptr] == ' ')
                     if (char_in_array(_input[ptr], punct) || _input[ptr] == ' ')
                         break;
                     temp += _input[ptr];
@@ -86,8 +77,6 @@ public:
             }
             //cout << temp << endl;
         }
-        //cout << str_in_array("Ellipse", word) << endl;
-        //cout << word[0] << endl;
         return temp;
     }
 
@@ -109,9 +98,6 @@ public:
 
     bool str_in_array(std::string input, std::vector<string> array)
     {
-        // std::string *p;
-        // size_t size = sizeof(array) / sizeof(array[0]);
-        // p = std::find(array, array + size, input);
         for (size_t i = 0; i < array.size(); i++)
         {
             if (input == array[i])
@@ -120,10 +106,6 @@ public:
         }
 
         return false;
-        /*if (p != array + size)
-            return true;
-        else
-            return false;*/
     }
     bool isDone()
     {
@@ -156,6 +138,8 @@ public:
     }
 
 private:
+    std::vector<string> punct_vec;
+    std::vector<string> word;
     std::string _input = "";
     std::string temp = "";
     int ptr = 0;

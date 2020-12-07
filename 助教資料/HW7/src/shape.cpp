@@ -59,3 +59,13 @@ std::string DTS(double x, int y)
     //printf(x);
     return ss.str();
 }
+
+//string轉double
+double STD(std::string s)
+{
+    double num;
+    std::stringstream ss;
+    ss << s;
+    ss >> num;
+    return num;
+}

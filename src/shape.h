@@ -42,5 +42,6 @@ public:
 double RTD(double x, int y);
 //將x取到小數點後y位數，回傳string DTS:doubletostring
 std::string DTS(double x, int y);
+double STD(std::string s);
 
 #endif
