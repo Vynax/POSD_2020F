@@ -1,6 +1,7 @@
 #include "node.h"
 #include <deque>
-
+#include "node_scanner.h"
+class NodeBuilder;
 class NodeParser
 {
 public:
@@ -24,4 +25,10 @@ public:
         std::deque<Node *> result;
         return result;
     }
+
+private:
+    NodeScanner nodescanner;
+    NodeBuilder nodebuilder;
+    std::vector<string> app_rule;
+    std::vector<string> folder_rule;
 };

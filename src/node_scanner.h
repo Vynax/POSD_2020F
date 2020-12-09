@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <sstream>
 #include <vector>
@@ -8,7 +10,7 @@
 class NodeScanner
 {
 public:
-    NodeScanner(std::string input) : _input(input)
+    NodeScanner(std::string input = "") : _input(input)
     {
         punct_vec.push_back("{");
         punct_vec.push_back("}");
