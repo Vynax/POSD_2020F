@@ -17,11 +17,25 @@ public:
     void buildFolderBegin(std::string name)
     {
         // notify begin of folder.
+        _stack.push(new Folder(std::to_string(id), name));
+        _stack.push(nullptr);
+        id++;
     }
 
     void buildFolderEnd()
     {
         // notify end of folder.
+        std::list<Node *> l;
+        while (_stack.top() != nullptr)
+        {
+            l.push_back(_stack.top());
+            _stack.pop();
+        }
+        _stack.pop();
+        for (auto it = l.rbegin(); it != l.rend(); it++)
+        {
+            _stack.top()->addNode(*it);
+        }
     }
 
     std::deque<Node *> getResult()
