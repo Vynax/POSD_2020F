@@ -40,4 +40,6 @@ public:
     virtual ~Node();
 };
 
+double STD(std::string s);
+
 #endif

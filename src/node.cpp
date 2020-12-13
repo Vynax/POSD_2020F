@@ -1,5 +1,6 @@
 #include "node.h"
 #include "null_iterator.h"
+#include <sstream>
 
 // Node::Node(std::string id, std::string name) : _id(id), _name(name)
 // {
@@ -46,3 +47,12 @@ void Node::addNodes(std::list<Node *> nodes)
 }
 
 Node::~Node() {}
+
+double STD(std::string s)
+{
+    double num;
+    std::stringstream ss;
+    ss << s;
+    ss >> num;
+    return num;
+}

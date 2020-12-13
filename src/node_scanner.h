@@ -67,11 +67,12 @@ public:
                 //只要不是合法標點符號或空白就加入token
                 for (; ptr < size; ptr++)
                 {
-                    if (char_in_array(_input[ptr], punct) || _input[ptr] == ' ')
+                    c = _input[ptr];
+                    if (char_in_array(c, punct) || c == ' ')
                         break;
-                    if (!isalpha(_input[ptr]) && !isdigit(_input[ptr]) && !(_input[ptr] == '.'))
+                    else if (!isalpha(c) && !isdigit(c) && !(c == '.'))
                         continue;
-                    temp += _input[ptr];
+                    temp += c;
                     //cout << "hi2" << endl;
                 }
             }
@@ -81,10 +82,20 @@ public:
         //cout << temp << endl;
         if (!str_AZ_az(temp) && !str_in_array(temp, punct_vec) && !isNum(temp))
             throw std::string("next token doesn't exist.");
+        //cout << "sc:" << temp << endl;
         return temp;
     }
 
     // you can add other public functions if you needed.
+
+    void set_ptr(int n)
+    {
+        ptr = n;
+    }
+    int get_ptr()
+    {
+        return ptr;
+    }
     int input_size()
     {
         return _input.size();
