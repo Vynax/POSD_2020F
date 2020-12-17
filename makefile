@@ -15,7 +15,6 @@ obj/node.o: src/node.cpp src/node.h
 directories:
 	mkdir -p bin
 	mkdir -p obj
-	pip3 install numpy
 
 clean:
 	rm -rf bin
