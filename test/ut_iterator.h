@@ -1,142 +1,94 @@
-#include "../src/folder.h"
-#include "../src/app.h"
+#include "../src/null_iterator.h"
 
-using namespace std;
-
-class IteratorTestSuite: public testing::Test {
+class IteratorTest : public ::testing::Test
+{
 protected:
-    virtual void SetUp() {
-        chrome = new App("1", "chrome", 50.15);
-        facebook = new App("2", "facebook", 30.32);
-        instagram = new App("3", "instagram", 20.21);
-        youtube = new App("4", "youtube", 70.07);
-        ubereat = new App("5", "ubereat", 40.34);
-        line = new App("6", "line", 60.66);
-
-        favorite = new Folder("7", "favorite");
-        common = new Folder("8", "common");
-        community = new Folder("9", "community");
-        trash = new Folder("10", "trash");
-
-        common->addNode(instagram);
-        common->addNode(community);
-        common->addNode(youtube);
-
-
-        community->addNode(ubereat);
-        community->addNode(line);
-        community->addNode(trash);
-        
-        favorite->addNode(chrome);
-        favorite->addNode(facebook);
-        favorite->addNode(common);
+    void SetUp() override
+    {
+        r34 = new Rectangle("0", 3, 4, "yellow");
+        e43 = new Ellipse("1", 4, 3, "blue");
+        triangleVector.push_back(new TwoDimensionalCoordinate(0, 0));
+        triangleVector.push_back(new TwoDimensionalCoordinate(3, 0));
+        triangleVector.push_back(new TwoDimensionalCoordinate(0, 4));
+        t345 = new Triangle("2", triangleVector, "red");
     }
 
-    Node* chrome;
-    Node* facebook;
-    Node* instagram;
-    Node* youtube;
-    Node* ubereat;
-    Node* line;
-
-    Node* favorite;
-    Node* common;
-    Node* community;
-    Node* trash;
+    void TearDown() override
+    {
+        delete r34;
+        delete e43;
+        delete t345;
+        triangleVector.clear();
+        triangleVector.shrink_to_fit();
+    }
+    std::vector<TwoDimensionalCoordinate *> triangleVector;
+    Shape *r34;
+    Shape *e43;
+    Shape *t345;
 };
 
-TEST_F(IteratorTestSuite, exception_for_app_iterate_first){
-    Iterator* it = chrome->createIterator();
-    try {
-        it->first();
+TEST_F(IteratorTest, Else_Type)
+{
+    std::list<Shape *> shapes = {t345, r34, e43};
+    CompoundShape cs("0", shapes);
+    EXPECT_EQ("Rectangle", r34->type());
+    EXPECT_EQ("Ellipse", e43->type());
+    EXPECT_EQ("Triangle", t345->type());
+    EXPECT_EQ("Compound Shape", cs.type());
+}
+
+TEST_F(IteratorTest, NullIterator)
+{
+    try
+    {
+        r34->createIterator()->first();
         FAIL();
-    }catch(string e) {
-        ASSERT_EQ("No child member!", e);
     }
-}
-
-TEST_F(IteratorTestSuite, exception_for_app_iterate_current_item){
-    Iterator* it = chrome->createIterator();
-    try {
-        it->currentItem();
-        FAIL();
-    }catch(string e) {
-        ASSERT_EQ("No child member!", e);
+    catch (std::string e)
+    {
+        EXPECT_EQ("No child member!", e);
     }
-}
-
-TEST_F(IteratorTestSuite, exception_for_app_iterate_next){
-    Iterator* it = chrome->createIterator();
-    try {
-        it->next();
+    EXPECT_EQ(r34->createIterator()->isDone(), true);
+    try
+    {
+        e43->createIterator()->next();
         FAIL();
-    }catch(string e) {
-        ASSERT_EQ("No child member!", e);
     }
-}
-
-TEST_F(IteratorTestSuite, app_iterate_is_done){
-    Iterator* it = chrome->createIterator();
-    ASSERT_TRUE(it->isDone());
-}
-
-TEST_F(IteratorTestSuite, folder_iterate_first) {
-    Iterator* it = favorite->createIterator();
-    ASSERT_NO_THROW(it->first());
-}
-
-TEST_F(IteratorTestSuite, folder_iterate_current_item) {
-    Iterator* it = favorite->createIterator();
-
-    Node* node = it->currentItem();
-
-    EXPECT_EQ("1", node->id());
-    EXPECT_EQ("chrome", node->name());
-    EXPECT_DOUBLE_EQ(50.15, node->size());
-    EXPECT_EQ("/favorite/chrome", node->route());
-}
-
-TEST_F(IteratorTestSuite, folder_iterate_current_next) {
-    Iterator* it = favorite->createIterator();
-
-    ASSERT_NO_THROW(it->next());
-
-    Node *node = it->currentItem();
-
-    EXPECT_EQ("2", node->id());
-    EXPECT_EQ("facebook", node->name());
-    EXPECT_DOUBLE_EQ(30.32, node->size());
-    EXPECT_EQ("/favorite/facebook", node->route());
-
-    ASSERT_NO_THROW(it->next());
-
-
-    node = it->currentItem();
-
-    EXPECT_EQ("8", node->id());
-    EXPECT_EQ("common", node->name());
-    EXPECT_DOUBLE_EQ(191.28, node->size());
-    EXPECT_EQ("/favorite/common", node->route());
-}
-
-TEST_F(IteratorTestSuite, exception_for_folder_iterate_next_out_of_range) {
-    Iterator* it = favorite->createIterator();
-    ASSERT_NO_THROW(it->next());
-    ASSERT_NO_THROW(it->next());
-    ASSERT_NO_THROW(it->next());
-
-    try {
-        it->next();
+    catch (std::string e)
+    {
+        EXPECT_EQ("No child member!", e);
+    }
+    EXPECT_EQ(e43->createIterator()->isDone(), true);
+    try
+    {
+        t345->createIterator()->currentItem();
         FAIL();
-    }catch(string e) {
+    }
+    catch (std::string e)
+    {
+        EXPECT_EQ("No child member!", e);
+    }
+    EXPECT_EQ(t345->createIterator()->isDone(), true);
+}
+
+TEST_F(IteratorTest, ShapeIterator)
+{
+    std::list<Shape *> shapes = {t345, r34, e43};
+    CompoundShape cs("0", shapes);
+    Iterator *si = cs.createIterator();
+    EXPECT_EQ(6, si->currentItem()->area());
+    si->next();
+    EXPECT_EQ(12, si->currentItem()->area());
+    si->next();
+    EXPECT_NEAR(37.699, si->currentItem()->area(), 0.001);
+    try
+    {
+        si->next();
+        si->next();
+        FAIL();
+    }
+    catch (std::string e)
+    {
         EXPECT_EQ("Moving past the end!", e);
     }
-}
-
-TEST_F(IteratorTestSuite, folder_iterate_is_done) {
-    Iterator* it = favorite->createIterator();
-    ASSERT_NO_THROW(it->next());
-    ASSERT_NO_THROW(it->next());
-    ASSERT_NO_THROW(it->next());
-    EXPECT_TRUE(it->isDone());
 }
