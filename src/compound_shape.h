@@ -16,7 +16,7 @@ public:
         // The default color of compound shape should be "transparent".
     }
 
-    CompoundShape(std::string id, std::list<Shape *> shapes, string color = "transparent") : Shape(id, color), _shapes(shapes)
+    CompoundShape(std::string id, std::list<Shape *> shapes, std::string color = "transparent") : Shape(id, color), _shapes(shapes)
     {
         // The default color of compound shape should be "transparent".
         /* if (_shapes.size() == 0)

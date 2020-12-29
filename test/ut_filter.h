@@ -59,7 +59,7 @@ TEST_F(FilterTest, Filter_with_Setter)
     std::list<Shape *> results = areaFilter->push(data);
 
     std::list<Shape *>::const_iterator ptr = results.begin();
-    EXPECT_EQ("Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])", (*ptr)->info());
+    EXPECT_EQ("black", (*ptr)->color());
     ptr++;
-    EXPECT_EQ("Rectangle (3.000, 4.000)", (*ptr)->info());
+    EXPECT_EQ("black", (*ptr)->color());
 }

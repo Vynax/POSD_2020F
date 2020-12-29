@@ -28,7 +28,7 @@ public:
         std::list<Shape *>::const_iterator ptr;
         for (ptr = shapes.begin(); ptr != shapes.end(); ptr++)
         {
-            FilterFunction1(*ptr);
+            _filterf(*ptr);
             // std::cout << "hi4" << std::endl;
         }
 
