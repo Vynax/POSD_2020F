@@ -24,7 +24,7 @@ public:
         // create info of ellipse, same way as triangle->info().
         // DO NOT use triangle->info() to get info directly.
         // you may add public function for Triangle to get it's data members.
-        vector<TwoDimensionalCoordinate *> vectors = triangle->getVectors();
+        std::vector<TwoDimensionalCoordinate *> vectors = triangle->getVectors();
         int i, size = vectors.size();
         _info = "";
         _info += "Triangle (";
