@@ -51,8 +51,8 @@ public:
         // and provide the argument the shape needed.
         // use functions in ShapeBuilder to build out the shape.
         // the shape with invalid argument should be ignored (see example bellow).
-        string temp;
-        string temp1;
+        std::string temp;
+        std::string temp1;
         //first = scanner.nextToken();
         try
         {
@@ -97,7 +97,7 @@ public:
         }
     }
 
-    bool check_rule(std::vector<string> rule)
+    bool check_rule(std::vector<std::string> rule)
     {
         int num_index = 0; //第幾個數字
         std::string temp;
@@ -123,7 +123,7 @@ public:
     double STD(std::string s)
     {
         double num;
-        stringstream ss;
+        std::stringstream ss;
         ss << s;
         ss >> num;
         return num;
@@ -138,11 +138,11 @@ private:
     Scanner scanner;
     ShapeBuilder sb;
     double array[6];
-    std::vector<string> word;
-    std::vector<string> ell_rule; //ellipse_rule
-    std::vector<string> rec_rule; //rectangle_rule
-    std::vector<string> tri_rule; //triangle_rule
-    std::vector<string> cs_rule;  //compoundshape_rule
+    std::vector<std::string> word;
+    std::vector<std::string> ell_rule; //ellipse_rule
+    std::vector<std::string> rec_rule; //rectangle_rule
+    std::vector<std::string> tri_rule; //triangle_rule
+    std::vector<std::string> cs_rule;  //compoundshape_rule
 };
 
 #endif

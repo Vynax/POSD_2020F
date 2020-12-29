@@ -15,14 +15,14 @@ public:
         // throw exception std::string "next char doesn't exist." if next token not found.
 
         char c = _input[ptr];
-        std::vector<string> word;
+        std::vector<std::string> word;
         word.push_back("Ellipse");
         word.push_back("Rectangle");
         word.push_back("Triangle");
         word.push_back("CompoundShape");
 
         char punct[] = {'[', ']', '{', '}', '(', ')', ','}; // punctuation 標點符號
-        std::vector<string> punct_vec;
+        std::vector<std::string> punct_vec;
         punct_vec.push_back("[");
         punct_vec.push_back("]");
         punct_vec.push_back("{");
@@ -107,7 +107,7 @@ public:
             return false;
     }
 
-    bool str_in_array(std::string input, std::vector<string> array)
+    bool str_in_array(std::string input, std::vector<std::string> array)
     {
         // std::string *p;
         // size_t size = sizeof(array) / sizeof(array[0]);
@@ -130,9 +130,9 @@ public:
         return done;
     }
 
-    bool isNum(string str)
+    bool isNum(std::string str)
     {
-        stringstream sin(str);
+        std::stringstream sin(str);
         double d;
         char c;
         if (!(sin >> d))

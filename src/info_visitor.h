@@ -75,7 +75,7 @@ public:
     }
 
 private:
-    string _info;
+    std::string _info;
 };
 
 #endif
