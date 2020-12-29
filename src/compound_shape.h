@@ -4,6 +4,7 @@
 #include "shape.h"
 #include "rectangle.h"
 #include "shape_iterator.h"
+#include <string>
 #include <list>
 
 class CompoundShape : public Shape
