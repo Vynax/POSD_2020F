@@ -37,7 +37,7 @@ public:
 
     double area() const
     {
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         // return sum of all containing shapes area.
         double areaN;
         for (areaN = 0, ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
