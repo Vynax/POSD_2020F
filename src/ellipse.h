@@ -5,8 +5,6 @@
 #include "visitor.h"
 #include <math.h>
 
-using namespace std;
-
 class Ellipse : public Shape
 {
 private:
@@ -63,7 +61,7 @@ public:
         return 2 * M_PI * _semiMinorAxes + 4 * (_semiMajorAxes - _semiMinorAxes);
     }
 
-    string info() const
+    std::string info() const
     {
         // return the info of the Ellipse.
         // ex. Ellipse (3.712, 4.000)

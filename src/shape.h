@@ -24,6 +24,7 @@ public:
     Shape(std::string id, std::string color);     // interface for color input by user.
     std::string id() const { return _id; };       // return id of shape.
     std::string color() const { return _color; }; // return color of shape.
+    void setColor(std::string color);
 
     virtual double area() const = 0;
     virtual double perimeter() const = 0;

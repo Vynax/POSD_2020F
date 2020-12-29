@@ -29,6 +29,11 @@ Iterator *Shape::createIterator() const
 {
     return null_itr;
 }
+
+void Shape::setColor(std::string color)
+{
+    _color = color;
+}
 Shape::~Shape() {}
 
 //將x取到小數點後y位數，回傳double值 RTD:roundtodigit

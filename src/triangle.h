@@ -10,7 +10,7 @@
 class Triangle : public Shape
 {
 private:
-    vector<TwoDimensionalCoordinate *> _vectors;
+    std::vector<TwoDimensionalCoordinate *> _vectors;
     //Tritest *tritest;
     double length[3];
     int size;
@@ -25,16 +25,16 @@ public:
         _vectors = vectors;
         //tritest = new Tritest(_vectors);
         if (_vectors.size() != 3)
-            throw string("This is not a triangle!");
+            throw std::string("This is not a triangle!");
         size = _vectors.size();
         for (i = 0; i < size; i++)
         {
             length[i] = callength(_vectors[i], _vectors[(i + 1) % size]); //用取餘數來防止超出vector範圍
         }
         if (!triangletest()) //如果triangletest失敗就回傳錯誤資訊
-            throw string("This is not a triangle!");
+            throw std::string("This is not a triangle!");
     }
-    Triangle(std::string id, std::vector<TwoDimensionalCoordinate *> vectors, string color) : Shape(id, color), _vectors(vectors)
+    Triangle(std::string id, std::vector<TwoDimensionalCoordinate *> vectors, std::string color) : Shape(id, color), _vectors(vectors)
     {
         // If the triangle can't be successfully created,
         // handle the exception by throwing string "This is not a triangle!"
@@ -43,14 +43,14 @@ public:
         _vectors = vectors;
         //tritest = new Tritest(_vectors);
         if (_vectors.size() != 3)
-            throw string("This is not a triangle!");
+            throw std::string("This is not a triangle!");
         size = _vectors.size();
         for (i = 0; i < size; i++)
         {
             length[i] = callength(_vectors[i], _vectors[(i + 1) % size]); //用取餘數來防止超出vector範圍
         }
         if (!triangletest()) //如果triangletest失敗就回傳錯誤資訊
-            throw string("This is not a triangle!");
+            throw std::string("This is not a triangle!");
     }
 
     void accept(Visitor *visitor)
@@ -63,7 +63,7 @@ public:
         return length;
     }
 
-    vector<TwoDimensionalCoordinate *> getVectors()
+    std::vector<TwoDimensionalCoordinate *> getVectors()
     {
         return _vectors;
     }
@@ -90,7 +90,7 @@ public:
         // return the info of the Triangle.
         // ex. Triangle ([0.000, 0.000], [0.000, -3.141], [-4.000, 0.000])
         int i, size = _vectors.size();
-        string s;
+        std::string s;
         s += "Triangle (";
         for (i = 0; i < size; i++)
         {
