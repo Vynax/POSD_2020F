@@ -10,7 +10,7 @@ class CompoundShape : public Shape
 {
 
 public:
-    CompoundShape(std::string id, string color = "transparent") : Shape(id, color)
+    CompoundShape(std::string id, std::string color = "transparent") : Shape(id, color)
     {
         // The default color of compound shape should be "transparent".
     }

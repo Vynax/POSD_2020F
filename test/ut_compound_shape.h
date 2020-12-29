@@ -94,7 +94,7 @@ TEST_F(CompoundTest, GetByIdException)
     //Shape *shapes[3] = {t345, r34, e43};
     try
     {
-        string s = cs.getShapeById("3")->info();
+        std::string s = cs.getShapeById("3")->info();
         FAIL();
     }
     catch (std::string e)
