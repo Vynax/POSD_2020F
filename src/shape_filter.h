@@ -26,7 +26,7 @@ public:
     std::list<Shape *> push(std::list<Shape *> shapes)
     {
         // push down filtered data and return result.
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         // cout << "hi" << endl;
         for (ptr = shapes.begin(); ptr != shapes.end(); ptr++)
         {

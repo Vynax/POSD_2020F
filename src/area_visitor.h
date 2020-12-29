@@ -47,7 +47,7 @@ public:
         // DO NOT use compoundShape->area() to get area directly.
         // you may add public function for CompoundShape to get it's data members.
         std::list<Shape *> shapes = compoundShape->getShapes();
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         AreaVisitor *av = new AreaVisitor();
         // return sum of all containing shapes area.
         for (_area = 0, ptr = shapes.begin(); ptr != shapes.end(); ptr++)

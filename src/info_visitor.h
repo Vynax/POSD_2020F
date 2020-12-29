@@ -55,7 +55,7 @@ public:
         // DO NOT use compoundShape->info() to get info directly.
         // you may add public function for CompoundShape to get it's data members.
         std::list<Shape *> shapes = compoundShape->getShapes();
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         InfoVisitor *iv = new InfoVisitor();
         _info = "Compound Shape {";
         for (ptr = shapes.begin(); ptr != shapes.end(); ptr++)

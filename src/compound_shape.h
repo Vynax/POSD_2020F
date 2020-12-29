@@ -49,7 +49,7 @@ public:
 
     double perimeter() const
     {
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         // return sum of all containing shapes perimeter.
         double perimeterN;
         for (perimeterN = 0, ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
@@ -64,7 +64,7 @@ public:
         // return list of all containing shapes info with wrapped of "CompoundShape {}".
         // ex."Compound Shape {Ellipse (4.000, 3.000), Rectangle (3.000, 4.000), Triangle ([0.000, 0.000], [3.000, 0.000], [0.000, 4.000])}"
         std::string str("Compound Shape {");
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             str += (*ptr)->info();
@@ -86,7 +86,7 @@ public:
         // search and delete a shape through id,
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected delete shape but shape not found"
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         //int deleteCount = 0;
         for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
@@ -119,7 +119,7 @@ public:
         // search all the containing shapes and the tree structure below,
         // if no match of id, throw std::string "Expected get shape but shape not found"
         //return (Shape *)(new Rectangle("0", 3, 4));
-        list<Shape *>::const_iterator ptr;
+        std::list<Shape *>::const_iterator ptr;
         for (ptr = _shapes.begin(); ptr != _shapes.end(); ptr++)
         {
             if ((*ptr)->id() == id)
