@@ -4,7 +4,7 @@ SRC = src/shape.h src/rectangle.h src/ellipse.h src/triangle.h src/two_dimension
 TEST = test/ut_rectangle.h test/ut_ellipse.h test/ut_triangle.h test/ut_sort.h
 OBJ = obj/shape.o
 
-all: dirs ut_main
+all: clean dirs ut_main
 
 obj/shape.o: src/shape.cpp src/shape.h
 	g++ -std=c++11 -Wfatal-errors -c src/shape.cpp -o obj/shape.o

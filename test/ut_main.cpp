@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
+// using namespace std;
 //#include "ut_triangle.h"
 
 int main(int argc, char *argv[])
