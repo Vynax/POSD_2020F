@@ -13,7 +13,7 @@ main: src/main.cpp
 	g++ -std=c++11 -Wfatal-errors -Wall src/shape.cpp src/main.cpp -o bin/geo -lpthread
 
 ut_main: src/shape.cpp test/ut_main.cpp $(TEST) $(SRC) $(OBJ)
-	g++ -std=c++11 -Wfatal-errors -Wall src/shape.cpp test/ut_main.cpp -o bin/ut_main -lgtest -lpthread
+	g++ -std=c++11 -Wfatal-errors -Wall obj/shape.o test/ut_main.cpp -o bin/ut_main -lgtest -lpthread
 
 dirs:
 	mkdir -p bin
